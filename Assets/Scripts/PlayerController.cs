@@ -26,9 +26,18 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float torque = 5; // The force applied when the player rotates
     [SerializeField] float antiTorque; // Represents the force trying to move the player to an upright position
     [SerializeField] float antiTorqueDenominator; // antiTorque is calculated using the player's current rotation devided by this variable.
+    [SerializeField] LayerMask impassableLayerMask; // Which layers can the player not rotate through
+    [SerializeField] float midFrameCollisionAdjust = 0.1f; // The angle of adjustment when the player is detected to have rotated into an impassible object.
+    [SerializeField] Collider2D impassableCollider; // The collider used to detect if the player has hit an impassible object (used to clamp rotation)
+
+    [Header("Other")]
+    [SerializeField] Collider2D playerCollider; // The collider of the player (Different from the PlayerAnchor collider)
+    [SerializeField] const int WHILELOOPKILL = 1000; // Terminate a while loop after it runs this many times
+    private int whileLoopTracker = 0; // Tracks the number of times a while loop has run
 
     private Rigidbody2D playerRB; // The player's rigidbody (Assigned at Start())
     private GroundCeilingCheck groundCeilingCheck; // The GroundCheck class, used to identify when the player is touching the ground.
+    
 
     // Start is called before the first frame update
     void Start()
@@ -36,11 +45,27 @@ public class PlayerController : MonoBehaviour
         // Assign relevant components from the player's gameObject
         playerRB = gameObject.GetComponent<Rigidbody2D>();
         groundCeilingCheck = gameObject.GetComponent<GroundCeilingCheck>();
+        playerCollider = GetComponentInChildren<CapsuleCollider2D>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        // If the player is grounded and they are not in the middle of a jump...
+        if (groundCeilingCheck.GroundedCheck() && releaseTime <= 0)
+        {
+            // Make them kinematic, and freeze all momentum. This allows the player to rotate freely without dealing with gravity
+            playerRB.bodyType = RigidbodyType2D.Kinematic;
+            playerRB.velocity = Vector2.zero;
+            playerRB.angularVelocity = 0;
+        }
+        
+        // Otherwise, the player is jumping, allow physics to be applied normally
+        else
+        {
+            playerRB.bodyType = RigidbodyType2D.Dynamic;
+        }
+
         // If the Space key is pressed or is being held...
         if (Input.GetKey(KeyCode.Space))
         {
@@ -67,6 +92,8 @@ public class PlayerController : MonoBehaviour
             {
                 // ...start the release timer
                 releaseTime = accelRate;
+                // ...make the player Dynamic...
+                playerRB.bodyType = RigidbodyType2D.Dynamic;
                 // Begin the jump
                 StartCoroutine("ReleaseSpring");
             }
@@ -91,21 +118,39 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKey(KeyCode.A))
         {
             // Apply torque to the player's rigidbody CounterClockwise
-            playerRB.AddTorque(torque);
+            // playerRB.AddTorque(torque);
+            playerRB.MoveRotation(playerRB.rotation + torque);
         }
 
         // If the D key is pressed down or held
         else if (Input.GetKey(KeyCode.D))
         {
             // Apply torque to the player's rigidbody Clockwise
-            playerRB.AddTorque(-torque);
+            // playerRB.AddTorque(-torque);
+            playerRB.MoveRotation(playerRB.rotation - torque);
         }
 
-        // If neither key is being pressed down or held
-        else
+        Physics.SyncTransforms();
+        whileLoopTracker = 0;
+        while (impassableCollider.IsTouchingLayers(impassableLayerMask))
         {
-            // Apply the antiTorque force to the player's rigidbody. Note this will always push the player towards a vertical orientation.
-            playerRB.AddTorque(-antiTorque);            
+            if (whileLoopTracker >= WHILELOOPKILL)
+            {
+                Debug.LogError("ERROR: While Loop Kill reached. Loop ran " + whileLoopTracker + " times.");
+                break;
+            }
+
+            Debug.Log("Detected Impassible Layer");
+            if(playerRB.rotation < 0)
+            {
+                playerRB.MoveRotation(playerRB.rotation + midFrameCollisionAdjust);
+            }
+            else if (playerRB.rotation < 0)
+            {
+                playerRB.MoveRotation(playerRB.rotation - midFrameCollisionAdjust);
+            }
+            Debug.Log("AUGH IT BURNS I'M IN A WALL");
+            whileLoopTracker += 1;
         }
     }
 

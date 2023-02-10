@@ -175,13 +175,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 415103502, guid: 7d6416c0196ab0d4d8e908226c86f652, type: 3}
+      propertyPath: torque
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 415103502, guid: 7d6416c0196ab0d4d8e908226c86f652, type: 3}
+      propertyPath: impassableLayerMask.m_Bits
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 415103504, guid: 7d6416c0196ab0d4d8e908226c86f652, type: 3}
       propertyPath: groundDetectRadius
-      value: 0.5
+      value: 0.48
       objectReference: {fileID: 0}
     - target: {fileID: 8980386124029065654, guid: 7d6416c0196ab0d4d8e908226c86f652, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.19
+      value: 0.406
       objectReference: {fileID: 0}
     - target: {fileID: 8980386125322786970, guid: 7d6416c0196ab0d4d8e908226c86f652, type: 3}
       propertyPath: m_RootOrder
@@ -230,6 +238,14 @@ PrefabInstance:
     - target: {fileID: 8980386125322786974, guid: 7d6416c0196ab0d4d8e908226c86f652, type: 3}
       propertyPath: m_Name
       value: PlayerAnchor
+      objectReference: {fileID: 0}
+    - target: {fileID: 8980386125322786975, guid: 7d6416c0196ab0d4d8e908226c86f652, type: 3}
+      propertyPath: m_BodyType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8980386125322786975, guid: 7d6416c0196ab0d4d8e908226c86f652, type: 3}
+      propertyPath: m_Interpolate
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7d6416c0196ab0d4d8e908226c86f652, type: 3}
