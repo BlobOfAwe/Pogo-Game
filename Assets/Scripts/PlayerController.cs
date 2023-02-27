@@ -23,16 +23,22 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float releaseTime; // Represents how much time is left since the jump began, before all the stored force has been applied to the pogo
 
     [Header("Rotation")]
-    [SerializeField] float torque = 5; // The force applied when the player rotates
-    [SerializeField] float antiTorque; // Represents the force trying to move the player to an upright position
-    [SerializeField] float antiTorqueDenominator; // antiTorque is calculated using the player's current rotation devided by this variable.
+    [SerializeField] float torque = 5; // How quickly the player rotates
     [SerializeField] LayerMask impassableLayerMask; // Which layers can the player not rotate through
-    [SerializeField] float midFrameCollisionAdjust = 0.1f; // The angle of adjustment when the player is detected to have rotated into an impassible object.
-    [SerializeField] Collider2D impassableCollider; // The collider used to detect if the player has hit an impassible object (used to clamp rotation)
+    [SerializeField] float rightClamp; // The maximum possible rotation in the right-direction
+    [SerializeField] float leftClamp; // The maximum possible rotation in the left-direction
+    [SerializeField] float raycastDegreeInterval = 1; // How often the raycast checks for an obstacle. A lower number may result in lag
+    [SerializeField] float defaultClamp = 270; // How many degrees the player can rotate when in midair or when no barrier to rotation is detected
+    [SerializeField] float zeroDegreeCheck = 25f; // When a collider is detected at 0 degrees, check this many degrees to either side to see which side is blocked
+    [SerializeField] float raycastCircleRadius; // The radius of the circlecast detecting impassable layers
+    [SerializeField] float offsetRaycastStart = 0.1f; // How far from transform.position does the circleCast begin? This prevents the cast from detecting ground below the player as a wall.
+    [SerializeField] float raycastDistance; // How far from transform.position does the raycast check. THIS DOES NOT ACCOUNT FOR OFFSETRAYCASTSTART
+    [SerializeField] float raycastAngleDegrees; // What degree is the raycast currently checking
+    [SerializeField] float raycastAngleX; // The calculated X value of the rotation (SIN of the angle)
+    [SerializeField] float raycastAngleY; // The calculated Y value of the rotation (COS of the angle)
 
     [Header("Other")]
-    [SerializeField] Collider2D playerCollider; // The collider of the player (Different from the PlayerAnchor collider)
-    [SerializeField] const int WHILELOOPKILL = 1000; // Terminate a while loop after it runs this many times
+    [SerializeField] const int WHILELOOPKILL = 360; // Terminate a while loop after it runs this many times
     private int whileLoopTracker = 0; // Tracks the number of times a while loop has run
 
     private Rigidbody2D playerRB; // The player's rigidbody (Assigned at Start())
@@ -45,7 +51,6 @@ public class PlayerController : MonoBehaviour
         // Assign relevant components from the player's gameObject
         playerRB = gameObject.GetComponent<Rigidbody2D>();
         groundCeilingCheck = gameObject.GetComponent<GroundCeilingCheck>();
-        playerCollider = GetComponentInChildren<CapsuleCollider2D>();
     }
 
     // Update is called once per frame
@@ -106,16 +111,34 @@ public class PlayerController : MonoBehaviour
             }
         }
 
+        if (groundCeilingCheck.GroundedCheck())
+        {
+            AssignClamps(false);
+            AssignClamps(true);
+        }
+
+        else
+        {
+            rightClamp = -defaultClamp;
+            leftClamp = defaultClamp;
+        }
+
+        if (playerRB.rotation > leftClamp)
+        {
+            playerRB.rotation = leftClamp;
+        }
+
+        else if (playerRB.rotation < rightClamp)
+        {
+            playerRB.rotation = rightClamp;
+        }
     }
 
     // FixedUpdate is called at a fixed rate, whenever unity makes physics calculations. This may be more or less often than Update.
     private void FixedUpdate()
-    {
-        // antiTorque increases along with the player's rotation. This counterbalances the increase in gravatational torque as the player's rotation increases.
-        antiTorque = playerRB.rotation / antiTorqueDenominator;
-        
+    {        
         // If the A key is pressed down or held
-        if (Input.GetKey(KeyCode.A))
+        if (Input.GetKey(KeyCode.A) && playerRB.rotation <= leftClamp)
         {
             // Apply torque to the player's rigidbody CounterClockwise
             // playerRB.AddTorque(torque);
@@ -123,34 +146,11 @@ public class PlayerController : MonoBehaviour
         }
 
         // If the D key is pressed down or held
-        else if (Input.GetKey(KeyCode.D))
+        else if (Input.GetKey(KeyCode.D) && playerRB.rotation >= rightClamp)
         {
             // Apply torque to the player's rigidbody Clockwise
             // playerRB.AddTorque(-torque);
             playerRB.MoveRotation(playerRB.rotation - torque);
-        }
-
-        Physics.SyncTransforms();
-        whileLoopTracker = 0;
-        while (impassableCollider.IsTouchingLayers(impassableLayerMask))
-        {
-            if (whileLoopTracker >= WHILELOOPKILL)
-            {
-                Debug.LogError("ERROR: While Loop Kill reached. Loop ran " + whileLoopTracker + " times.");
-                break;
-            }
-
-            Debug.Log("Detected Impassible Layer");
-            if(playerRB.rotation < 0)
-            {
-                playerRB.MoveRotation(playerRB.rotation + midFrameCollisionAdjust);
-            }
-            else if (playerRB.rotation < 0)
-            {
-                playerRB.MoveRotation(playerRB.rotation - midFrameCollisionAdjust);
-            }
-            Debug.Log("AUGH IT BURNS I'M IN A WALL");
-            whileLoopTracker += 1;
         }
     }
 
@@ -176,5 +176,136 @@ public class PlayerController : MonoBehaviour
             // Wait for the next frame before being called again
             yield return null;
         }
+    }
+
+    // Raycast right or left depending on parameter, detecting impassable colliders, and clamping the player's rotation in that direction to prevent rotating into objects
+    private void AssignClamps(bool assignRightClamp)
+    {
+        // Initialize Variables
+        bool detectedImpassable = false; // Has the raycast detected an impassable collider yet?
+        whileLoopTracker = 0;
+        raycastAngleDegrees = 0;
+
+        // While the raycast has not detected an impassable collider...
+        while (!detectedImpassable)
+        {
+            // If the while loop has exceeded the WHILELOOPKILL limit, assign the right or left clamp to its default
+            if (whileLoopTracker >= WHILELOOPKILL)
+            {
+                Debug.Log("Did not detect impassable collider, maximized rotation");
+                if (assignRightClamp)
+                {
+                    rightClamp = -defaultClamp;
+                }
+                else if (!assignRightClamp)
+                {
+                    leftClamp = defaultClamp;
+                }
+
+                // If it cannot figure out whether to assign the right or left clamp, log an error
+                else
+                {
+                    Debug.LogError("Error: Right or Left clamp not specified");
+                }
+
+                // Break out of the while loop
+                break;
+            }
+
+            // Once the loop has passed the check, add one to the loop tracker
+            whileLoopTracker += 1;
+
+            // Assign the vector values corresponding to the raycast angle
+            raycastAngleX = Mathf.Sin(-raycastAngleDegrees * Mathf.Deg2Rad);
+            raycastAngleY = Mathf.Cos(-raycastAngleDegrees * Mathf.Deg2Rad);
+
+            // Send a circle-cast in the direction of the raycast angle, starting from the offsetRaycastStart and ending at the raycastDistance, detecting impassableLayerMask
+            RaycastHit2D hit = Physics2D.CircleCast(
+                new Vector2(
+                    transform.position.x + (raycastAngleX * offsetRaycastStart),
+                    transform.position.y + (raycastAngleY * offsetRaycastStart)
+                ),
+                raycastCircleRadius,
+                 new Vector2(
+                    raycastAngleX,
+                    raycastAngleY
+                 ),
+                 raycastDistance,
+                 impassableLayerMask
+            );
+
+            // If the raycast detects an impassable layer...
+            if (hit)
+            {
+
+                detectedImpassable = true; // Shows the raycast was successful
+
+                // If we are checking and assigning the raycast to the right, assign the raycast's angle to the right clamp
+                if (assignRightClamp)
+                {
+                    rightClamp = raycastAngleDegrees;
+                }
+
+                // If we are not checking and assigning to the right, assign the raycast's angle to the left clamp
+                else if (!assignRightClamp)
+                {
+                    leftClamp = raycastAngleDegrees;
+                }
+
+                // If the parameter is undefined, or has an otherwise invalid value, throw an error
+                else
+                {
+                    Debug.LogError("Error: Right or Left clamp not specified");
+                }
+
+                // Log the angle where the collider was detected
+                Debug.Log("Detected Impassable object (" + hit.collider.name + ") at angle: " + raycastAngleDegrees);
+            }
+
+            // If the raycast does not detect an impassable layer
+            else
+            {
+                // If the parameter says we are assigning to the right, subtract the raycastDegreeInterval from the raycasting angle before trying again
+                if (assignRightClamp)
+                {
+                    raycastAngleDegrees -= raycastDegreeInterval;
+                }
+
+                // If the parameter says we are not assigning to the right, add the raycastDegreeInterval to the raycasting angle before trying again
+                else if (!assignRightClamp)
+                {
+                    raycastAngleDegrees += raycastDegreeInterval;
+                }
+
+                // If the parameter is undefined, or has an otherwise invalid value, throw an error
+                else
+                {
+                    Debug.LogError("Error: Right or Left clamp not specified");
+                }
+                
+            }
+        }
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawLine(
+            new Vector2(
+                transform.position.x + (raycastAngleX * offsetRaycastStart),
+                transform.position.y + (raycastAngleY * offsetRaycastStart)
+            ),
+            new Vector2(
+                transform.position.x + (raycastAngleX * raycastDistance), 
+                transform.position.y + (raycastAngleY * raycastDistance)
+            )
+        );
+
+        Gizmos.DrawWireSphere(
+            new Vector2(
+                transform.position.x + (raycastAngleX * raycastDistance),
+                transform.position.y + (raycastAngleY * raycastDistance)
+            ), 
+            raycastCircleRadius
+        );
     }
 }

@@ -41,6 +41,9 @@ public class GroundCeilingCheck : MonoBehaviour
     // Draws the ground and ceiling checks in the scene view
     private void OnDrawGizmos()
     {
-        Gizmos.DrawWireSphere(groundCheck.transform.position, groundDetectRadius);
+        if (groundCheck.activeInHierarchy)
+        {
+            Gizmos.DrawWireSphere(groundCheck.transform.position, groundDetectRadius);
+        }
     }
 }
