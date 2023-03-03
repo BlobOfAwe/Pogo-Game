@@ -12,10 +12,9 @@ public class GroundCeilingCheck : MonoBehaviour
     [SerializeField] LayerMask whatIsGround; // What layers are considered ground?
     [SerializeField] GameObject groundCheck; // If this object touches the ground, the gameObject is on the ground
     [SerializeField] float groundDetectRadius; // Distance that groundCheck checks to see if it is on the ground
+    public bool grounded; // Is the object grounded
 
-    // Returns true if the player is Grounded and false otherwise
-    // This code is meant to be run by an external class, and is not called within this class
-    public bool GroundedCheck()
+    public void Update()
     {
         // Sets a CircleCast at groundCheck's position, with groundDetectRadius, checking for layers included in whatIsGround
         Collider2D[] colliders = Physics2D.OverlapCircleAll(groundCheck.transform.position, groundDetectRadius, whatIsGround);
@@ -29,13 +28,13 @@ public class GroundCeilingCheck : MonoBehaviour
                 // Declare the gameObject isGrounded if the CircleCast found at least one ground layer that is not this gameobject
                 if (colliders[i].gameObject != gameObject)
                 {
-                    return true;
+                    grounded = true;
                 }
+                else { grounded = false; }
             }
         }
 
-        return false;
-
+        else { grounded = false; }
     }
 
     // Draws the ground and ceiling checks in the scene view

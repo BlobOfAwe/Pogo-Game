@@ -20,7 +20,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float maxCharge = 30; // Represents the maximum displacement (compression) of the spring. This indicates the maximum power of a jump.
     [SerializeField] float springChargeRate = 0.5f; // How much charge is added to the spring each frame
     [SerializeField] float accelRate = 0.5f; // Represents the amount of time it takes for the spring to return to equilibrium position, ie; how long it takes for the jump force to be applied
-    [SerializeField] float releaseTime; // Represents how much time is left since the jump began, before all the stored force has been applied to the pogo
+    public float releaseTime; // Represents how much time is left since the jump began, before all the stored force has been applied to the pogo
 
     [Header("Rotation")]
     [SerializeField] float torque = 5; // How quickly the player rotates
@@ -36,6 +36,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float raycastAngleDegrees; // What degree is the raycast currently checking
     [SerializeField] float raycastAngleX; // The calculated X value of the rotation (SIN of the angle)
     [SerializeField] float raycastAngleY; // The calculated Y value of the rotation (COS of the angle)
+    [SerializeField] float startRaycastAngleFrom; // Where should the player begin raycasting for obstacles from
 
     [Header("Other")]
     [SerializeField] const int WHILELOOPKILL = 360; // Terminate a while loop after it runs this many times
@@ -57,12 +58,15 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         // If the player is grounded and they are not in the middle of a jump...
-        if (groundCeilingCheck.GroundedCheck() && releaseTime <= 0)
+        if (groundCeilingCheck.grounded && releaseTime <= 0)
         {
             // Make them kinematic, and freeze all momentum. This allows the player to rotate freely without dealing with gravity
             playerRB.bodyType = RigidbodyType2D.Kinematic;
             playerRB.velocity = Vector2.zero;
             playerRB.angularVelocity = 0;
+
+            // Note the player's rotation as they land, this will be the angle the raycasts begin at
+            startRaycastAngleFrom = 0;
         }
         
         // Otherwise, the player is jumping, allow physics to be applied normally
@@ -93,7 +97,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyUp(KeyCode.Space))
         {
             // ...and the player is grounded...
-            if (groundCeilingCheck.GroundedCheck())
+            if (groundCeilingCheck.grounded)
             {
                 // ...start the release timer
                 releaseTime = accelRate;
@@ -111,7 +115,17 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        if (groundCeilingCheck.GroundedCheck())
+        if (playerRB.rotation > leftClamp)
+        {
+            playerRB.rotation = leftClamp;
+        }
+
+        else if (playerRB.rotation < rightClamp)
+        {
+            playerRB.rotation = rightClamp;
+        }
+
+        if (groundCeilingCheck.grounded)
         {
             AssignClamps(false);
             AssignClamps(true);
@@ -123,15 +137,7 @@ public class PlayerController : MonoBehaviour
             leftClamp = defaultClamp;
         }
 
-        if (playerRB.rotation > leftClamp)
-        {
-            playerRB.rotation = leftClamp;
-        }
-
-        else if (playerRB.rotation < rightClamp)
-        {
-            playerRB.rotation = rightClamp;
-        }
+        
     }
 
     // FixedUpdate is called at a fixed rate, whenever unity makes physics calculations. This may be more or less often than Update.
@@ -184,7 +190,7 @@ public class PlayerController : MonoBehaviour
         // Initialize Variables
         bool detectedImpassable = false; // Has the raycast detected an impassable collider yet?
         whileLoopTracker = 0;
-        raycastAngleDegrees = 0;
+        raycastAngleDegrees = startRaycastAngleFrom;
 
         // While the raycast has not detected an impassable collider...
         while (!detectedImpassable)
@@ -192,7 +198,7 @@ public class PlayerController : MonoBehaviour
             // If the while loop has exceeded the WHILELOOPKILL limit, assign the right or left clamp to its default
             if (whileLoopTracker >= WHILELOOPKILL)
             {
-                Debug.Log("Did not detect impassable collider, maximized rotation");
+                //Debug.Log("Did not detect impassable collider, maximized rotation");
                 if (assignRightClamp)
                 {
                     rightClamp = -defaultClamp;
@@ -259,7 +265,7 @@ public class PlayerController : MonoBehaviour
                 }
 
                 // Log the angle where the collider was detected
-                Debug.Log("Detected Impassable object (" + hit.collider.name + ") at angle: " + raycastAngleDegrees);
+                //Debug.Log("Detected Impassable object (" + hit.collider.name + ") at angle: " + raycastAngleDegrees);
             }
 
             // If the raycast does not detect an impassable layer
