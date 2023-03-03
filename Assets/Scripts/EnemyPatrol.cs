@@ -30,6 +30,7 @@ public class EnemyPatrol : MonoBehaviour
     void Update()
     {
         //Checks if the enemy is facing right and has reached max distance to the right
+
         if (facingRight && transform.position.x > maxX)
         {
             //Sets the facingright boolean to false
@@ -46,19 +47,16 @@ public class EnemyPatrol : MonoBehaviour
             transform.localScale = new Vector3(1, 1, 1);
         }
         //Responsible for moving the enemy
-        rb.velocity = new Vector2(facingRight ? speed : -speed, rb.velocity.y);
         //Checks if the enemy is is stunned or not then if it is it changes its speed to 0
-        if (!enemyStun.isStunned)
+        if (enemyStun.isStunned)
         {
             //If its not stunned then it carries on
-            rb.velocity = new Vector2(speed, rb.velocity.y);
+            rb.velocity = Vector2.zero;
         }
         else
         {
-            //Changes the speed to 0
-            rb.velocity = Vector2.zero;
+            rb.velocity = new Vector2(facingRight ? speed : -speed, rb.velocity.y);
         }
-
     }
 
 }
