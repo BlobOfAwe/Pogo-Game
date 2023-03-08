@@ -27,14 +27,14 @@ public class AirDash : MonoBehaviour
         if (!groundCeilingCheck.grounded && !usedDash && Input.GetKey(KeyCode.LeftArrow))
         {
             usedDash = true; // Mark the dash as used
-            playerRB.velocity += Vector2.left * dashSpeed; // Add the dash speed to the player's velocity left
+            playerRB.velocity = new Vector2(-dashSpeed, playerRB.velocity.y); // Add the dash speed to the player's velocity left
         }
 
         // If the player is not grounded, has not used their dash yet, and presses the right arrow key...
         else if (!groundCeilingCheck.grounded && !usedDash && Input.GetKey(KeyCode.RightArrow))
         {
             usedDash = true; // Mark the dash as used
-            playerRB.velocity += Vector2.right * dashSpeed; // Add the dash speed to the player's velocity right
+            playerRB.velocity = new Vector2(dashSpeed, playerRB.velocity.y); // Add the dash speed to the player's velocity right
         }
 
         // If the player is grounded, reset the dash

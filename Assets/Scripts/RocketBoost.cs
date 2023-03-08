@@ -23,7 +23,7 @@ public class RocketBoost : MonoBehaviour
     void Update()
     {
         // If the player is not grounded, they have not used their boost, and the Space key is pressed...
-        if (!groundCeilingCheck.grounded && !usedBoost && Input.GetKey(KeyCode.Space))
+        if (!groundCeilingCheck.grounded && !usedBoost && Input.GetKey(KeyCode.W))
         {
             timer = jumpTimer; // Set the timer
             usedBoost = true; // Mark the boost as used

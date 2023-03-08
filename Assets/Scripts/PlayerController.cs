@@ -29,14 +29,15 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float leftClamp; // The maximum possible rotation in the left-direction
     [SerializeField] float raycastDegreeInterval = 1; // How often the raycast checks for an obstacle. A lower number may result in lag
     [SerializeField] float defaultClamp = 270; // How many degrees the player can rotate when in midair or when no barrier to rotation is detected
-    [SerializeField] float zeroDegreeCheck = 25f; // When a collider is detected at 0 degrees, check this many degrees to either side to see which side is blocked
     [SerializeField] float raycastCircleRadius; // The radius of the circlecast detecting impassable layers
     [SerializeField] float offsetRaycastStart = 0.1f; // How far from transform.position does the circleCast begin? This prevents the cast from detecting ground below the player as a wall.
     [SerializeField] float raycastDistance; // How far from transform.position does the raycast check. THIS DOES NOT ACCOUNT FOR OFFSETRAYCASTSTART
     [SerializeField] float raycastAngleDegrees; // What degree is the raycast currently checking
     [SerializeField] float raycastAngleX; // The calculated X value of the rotation (SIN of the angle)
     [SerializeField] float raycastAngleY; // The calculated Y value of the rotation (COS of the angle)
+    [SerializeField] bool hasSetStartAngle = false; // Has startRaycastAngleFrom been set yet since being grounded?
     [SerializeField] float startRaycastAngleFrom; // Where should the player begin raycasting for obstacles from
+    [SerializeField] float confirmCastAngle = 45; // What angle should be added to the second raycast when confirming an obstacle's position
 
     [Header("Other")]
     [SerializeField] const int WHILELOOPKILL = 360; // Terminate a while loop after it runs this many times
@@ -65,8 +66,13 @@ public class PlayerController : MonoBehaviour
             playerRB.velocity = Vector2.zero;
             playerRB.angularVelocity = 0;
 
-            // Note the player's rotation as they land, this will be the angle the raycasts begin at
-            startRaycastAngleFrom = 0;
+            // If the player has not marked their rotation since being grounded
+            if (!hasSetStartAngle)
+            {
+                // Note the player's rotation as they land, this will be the angle the raycasts begin at
+                startRaycastAngleFrom = playerRB.rotation;
+                hasSetStartAngle = true;
+            }
         }
         
         // Otherwise, the player is jumping, allow physics to be applied normally
@@ -103,6 +109,8 @@ public class PlayerController : MonoBehaviour
                 releaseTime = accelRate;
                 // ...make the player Dynamic...
                 playerRB.bodyType = RigidbodyType2D.Dynamic;
+                // ...mark hasSetStartAngle as false
+                hasSetStartAngle = false;
                 // Begin the jump
                 StartCoroutine("ReleaseSpring");
             }
@@ -115,22 +123,25 @@ public class PlayerController : MonoBehaviour
             }
         }
 
+        // If the player has rotated further left than the clamp value, set their rotation
         if (playerRB.rotation > leftClamp)
         {
             playerRB.rotation = leftClamp;
         }
-
+        // If the player has rotated further right than the clamp value, set their rotation
         else if (playerRB.rotation < rightClamp)
         {
             playerRB.rotation = rightClamp;
         }
 
+        // If the player is grounded, set the clamp values to the left and right
         if (groundCeilingCheck.grounded)
         {
             AssignClamps(false);
             AssignClamps(true);
         }
 
+        // If the player is not grounded, set the clamps to their defualt values
         else
         {
             rightClamp = -defaultClamp;
@@ -243,19 +254,64 @@ public class PlayerController : MonoBehaviour
             // If the raycast detects an impassable layer...
             if (hit)
             {
-
-                detectedImpassable = true; // Shows the raycast was successful
+                Debug.Log("Collider Detected At: " + raycastAngleDegrees);
 
                 // If we are checking and assigning the raycast to the right, assign the raycast's angle to the right clamp
                 if (assignRightClamp)
                 {
-                    rightClamp = raycastAngleDegrees;
+
+                    // Send a second circle-cast further right than the raycastAngle, starting from the offsetRaycastStart and ending at the raycastDistance, detecting impassableLayerMask
+                    RaycastHit2D confirmHit = Physics2D.CircleCast(
+                        new Vector2(
+                            transform.position.x + (Mathf.Sin((-raycastAngleDegrees + confirmCastAngle) * Mathf.Deg2Rad) * offsetRaycastStart),
+                            transform.position.y + (Mathf.Cos((-raycastAngleDegrees + confirmCastAngle) * Mathf.Deg2Rad) * offsetRaycastStart)
+                        ),
+                        raycastCircleRadius,
+                         new Vector2(
+                            Mathf.Sin((-raycastAngleDegrees + confirmCastAngle) * Mathf.Deg2Rad),
+                            Mathf.Cos((-raycastAngleDegrees + confirmCastAngle) * Mathf.Deg2Rad)
+                         ),
+                         raycastDistance,
+                         impassableLayerMask
+                    );
+
+                    // If the second circle cast detects a collider, confirm the obstacle is on the player's right, and clamp the player's rotation to the first raycast angle (Not the confirm-cast's angle)
+                    if (confirmHit)
+                    {
+                        rightClamp = raycastAngleDegrees;
+                        detectedImpassable = true; // Shows the raycast was successful
+                        Debug.Log("Right Clamp Confirmed angle at: " + (raycastAngleDegrees - confirmCastAngle));
+                    }
+                    else { Debug.Log("Right Clamp failed to confirm angle at: " + (raycastAngleDegrees - confirmCastAngle)); }
                 }
 
                 // If we are not checking and assigning to the right, assign the raycast's angle to the left clamp
                 else if (!assignRightClamp)
                 {
-                    leftClamp = raycastAngleDegrees;
+                    // Send a second circle-cast further right than the raycastAngle, starting from the offsetRaycastStart and ending at the raycastDistance, detecting impassableLayerMask
+                    RaycastHit2D confirmHit = Physics2D.CircleCast(
+                        new Vector2(
+                            transform.position.x + (Mathf.Sin((-raycastAngleDegrees - confirmCastAngle) * Mathf.Deg2Rad) * offsetRaycastStart),
+                            transform.position.y + (Mathf.Cos((-raycastAngleDegrees - confirmCastAngle) * Mathf.Deg2Rad) * offsetRaycastStart)
+                        ),
+                        raycastCircleRadius,
+                         new Vector2(
+                            Mathf.Sin((-raycastAngleDegrees - confirmCastAngle) * Mathf.Deg2Rad),
+                            Mathf.Cos((-raycastAngleDegrees - confirmCastAngle) * Mathf.Deg2Rad)
+                         ),
+                         raycastDistance,
+                         impassableLayerMask
+                    );
+
+                    // If the second circle cast detects a collider, confirm the obstacle is on the player's left, and clamp the player's rotation to the first raycast angle (Not the confirm-cast's angle)
+                    if (confirmHit)
+                    {
+                        leftClamp = raycastAngleDegrees;
+                        detectedImpassable = true; // Shows the raycast was successful
+                        Debug.Log("Left Clamp Confirmed angle at: " + (raycastAngleDegrees + confirmCastAngle));
+                    }
+                    else { Debug.Log("Left Clamp failed to confirm angle at: " + (raycastAngleDegrees - confirmCastAngle)); }
+
                 }
 
                 // If the parameter is undefined, or has an otherwise invalid value, throw an error
