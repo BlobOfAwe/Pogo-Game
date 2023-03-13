@@ -12,7 +12,7 @@ public class ShooterEnemyController : MonoBehaviour
     //The projectile 
     public GameObject bulletPrefab;
     //Projectile speed
-    public float projectileSpeed = 5f;
+    public float bulletSpeed = 5f;
     //Sseconds between each shot
     public float timeBetweenShots = 1f;
     //Checks if the enemy is facing right
@@ -41,11 +41,11 @@ public class ShooterEnemyController : MonoBehaviour
     private void ShootProjectile()
     {
         //Instantiates the bullet 
-        GameObject projectile = Instantiate(bulletPrefab, transform.position, transform.rotation);
+        GameObject bullet = Instantiate(bulletPrefab, transform.position, transform.rotation);
         //Grabs the rigidbody from the bullet
-        Rigidbody2D rb = projectile.GetComponent<Rigidbody2D>();
+        Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
         //Gives the bullet velocity to move at the given direction
-        rb.velocity = (isFacingRight ? transform.right : -transform.right) * projectileSpeed;
+        rb.velocity = (isFacingRight ? transform.right : -transform.right) * bulletSpeed;
     }
 
 
