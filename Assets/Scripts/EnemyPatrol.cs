@@ -47,13 +47,16 @@ public class EnemyPatrol : MonoBehaviour
         //Checks if the enemy is is stunned or not then if it is it changes its speed to 0
         if (enemyStun.isStunned)
         {
-            //If its not stunned then it carries on
             rb.velocity = Vector2.zero;
         }
+        //If its not stunned then it carries on
         else
         {
             rb.velocity = new Vector2(facingRight ? speed : -speed, rb.velocity.y);
         }
+
+        //DEBUG: If R is pressed, un-stun the enemy
+        if (Input.GetKey(KeyCode.R)) { enemyStun.isStunned = false; }
     }
 
 }
