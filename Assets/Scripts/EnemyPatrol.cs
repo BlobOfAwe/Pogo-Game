@@ -13,7 +13,7 @@ public class EnemyPatrol : MonoBehaviour
     public float speed = 2f; //Sets up the variable for the patrol speed
     public float maxX = 2f; //Sets up the variable for the max distance it patrols
     public float minX = -2f; //Set up the variable for the minimum distance 
-    private bool facingRight = true; // Boolean checks if the enemy is facing right, is set to active at the start
+    public bool facingRight = true; // Boolean checks if the enemy is facing right, is set to active at the start
     private Rigidbody2D rb; //Sets up the rigidbody 
     private EnemyStun enemyStun; // The script that controls whether the enemy is stunned or not
 
@@ -48,6 +48,8 @@ public class EnemyPatrol : MonoBehaviour
         if (enemyStun.isStunned)
         {
             rb.velocity = Vector2.zero;
+            rb.isKinematic = true;
+            rb.freezeRotation = true;
         }
         //If its not stunned then it carries on
         else

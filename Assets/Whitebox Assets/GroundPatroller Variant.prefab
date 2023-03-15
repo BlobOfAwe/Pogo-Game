@@ -7,17 +7,57 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1414288163, guid: a0b961bb0296fd249aded7e23f74c6bd, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.077
+      objectReference: {fileID: 0}
+    - target: {fileID: 1414288165, guid: a0b961bb0296fd249aded7e23f74c6bd, type: 3}
+      propertyPath: m_Size.x
+      value: 0.998888
+      objectReference: {fileID: 0}
+    - target: {fileID: 1414288165, guid: a0b961bb0296fd249aded7e23f74c6bd, type: 3}
+      propertyPath: m_Size.y
+      value: 0.5021539
+      objectReference: {fileID: 0}
+    - target: {fileID: 1414288165, guid: a0b961bb0296fd249aded7e23f74c6bd, type: 3}
+      propertyPath: m_Offset.x
+      value: -0.08714773
+      objectReference: {fileID: 0}
+    - target: {fileID: 1414288165, guid: a0b961bb0296fd249aded7e23f74c6bd, type: 3}
+      propertyPath: m_Offset.y
+      value: -0.2820413
+      objectReference: {fileID: 0}
+    - target: {fileID: 177843888823435946, guid: a0b961bb0296fd249aded7e23f74c6bd, type: 3}
+      propertyPath: m_Size.x
+      value: 1.3137183
+      objectReference: {fileID: 0}
+    - target: {fileID: 177843888823435946, guid: a0b961bb0296fd249aded7e23f74c6bd, type: 3}
+      propertyPath: m_Offset.x
+      value: 0.074872226
+      objectReference: {fileID: 0}
+    - target: {fileID: 5137532444723769621, guid: a0b961bb0296fd249aded7e23f74c6bd, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.6974297
+      objectReference: {fileID: 0}
+    - target: {fileID: 5137532444723769621, guid: a0b961bb0296fd249aded7e23f74c6bd, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.052
+      objectReference: {fileID: 0}
+    - target: {fileID: 5137532444723769621, guid: a0b961bb0296fd249aded7e23f74c6bd, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.034
+      objectReference: {fileID: 0}
     - target: {fileID: 6437930655932412624, guid: a0b961bb0296fd249aded7e23f74c6bd, type: 3}
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6437930655932412624, guid: a0b961bb0296fd249aded7e23f74c6bd, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 18.331
+      value: 63.85
       objectReference: {fileID: 0}
     - target: {fileID: 6437930655932412624, guid: a0b961bb0296fd249aded7e23f74c6bd, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 13.36
+      value: -30.09
       objectReference: {fileID: 0}
     - target: {fileID: 6437930655932412624, guid: a0b961bb0296fd249aded7e23f74c6bd, type: 3}
       propertyPath: m_LocalPosition.z
@@ -58,18 +98,18 @@ PrefabInstance:
     - target: {fileID: 6437930655932412625, guid: a0b961bb0296fd249aded7e23f74c6bd, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: e92527f6d0fe45342ab542b47346d45f, type: 3}
+      objectReference: {fileID: 21300000, guid: e6064a25ae758fe4b87e7f7e48d79daf, type: 3}
     - target: {fileID: 6437930655932412628, guid: a0b961bb0296fd249aded7e23f74c6bd, type: 3}
       propertyPath: m_Name
       value: GroundPatroller Variant
       objectReference: {fileID: 0}
     - target: {fileID: 6437930655932412630, guid: a0b961bb0296fd249aded7e23f74c6bd, type: 3}
       propertyPath: maxX
-      value: 28
+      value: 72.13
       objectReference: {fileID: 0}
     - target: {fileID: 6437930655932412630, guid: a0b961bb0296fd249aded7e23f74c6bd, type: 3}
       propertyPath: minX
-      value: 12.64
+      value: 58.70583
       objectReference: {fileID: 0}
     - target: {fileID: 6437930655932412631, guid: a0b961bb0296fd249aded7e23f74c6bd, type: 3}
       propertyPath: m_Mass
@@ -110,28 +150,23 @@ EdgeCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2725239678288854685}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   m_EdgeRadius: 0
   m_Points:
-  - {x: 0.45685267, y: -0.9136343}
-  - {x: 0.5289726, y: -0.86987114}
-  - {x: 0.5349827, y: -0.80510235}
-  - {x: 0.5387211, y: -0.741251}
-  - {x: 0.44649887, y: -0.6785126}
-  - {x: 0.44143867, y: -0.21286297}
-  - {x: 0.5433693, y: 0.42550373}
-  - {x: 0.27096558, y: 0.5413742}
-  - {x: -0.4200821, y: 0.4826002}
-  - {x: -0.41246796, y: -0.6827774}
-  - {x: -0.45822525, y: -0.7837324}
-  - {x: -0.40114784, y: -0.9035454}
-  - {x: 0.45996404, y: -0.92000103}
+  - {x: 0.48426938, y: -0.687737}
+  - {x: -0.6426201, y: -0.66604495}
+  - {x: -0.6589494, y: -0.16687441}
+  - {x: -0.14388561, y: 0.3780796}
+  - {x: 0.10270405, y: 0.46457827}
+  - {x: 0.5226793, y: 0.39716738}
+  - {x: 0.52575254, y: -0.3954959}
+  - {x: 0.4904251, y: -0.67657954}
   m_AdjacentStartPoint: {x: 0, y: 0}
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0
