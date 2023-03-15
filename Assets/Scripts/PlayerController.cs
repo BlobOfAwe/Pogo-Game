@@ -157,16 +157,12 @@ public class PlayerController : MonoBehaviour
         // If the A key is pressed down or held
         if (Input.GetKey(KeyCode.A) && playerRB.rotation <= leftClamp)
         {
-            // Apply torque to the player's rigidbody CounterClockwise
-            // playerRB.AddTorque(torque);
             playerRB.MoveRotation(playerRB.rotation + torque);
         }
 
         // If the D key is pressed down or held
         else if (Input.GetKey(KeyCode.D) && playerRB.rotation >= rightClamp)
         {
-            // Apply torque to the player's rigidbody Clockwise
-            // playerRB.AddTorque(-torque);
             playerRB.MoveRotation(playerRB.rotation - torque);
         }
     }
@@ -254,7 +250,7 @@ public class PlayerController : MonoBehaviour
             // If the raycast detects an impassable layer...
             if (hit)
             {
-                Debug.Log("Collider Detected At: " + raycastAngleDegrees);
+                // Debug.Log("Collider Detected At: " + raycastAngleDegrees);
 
                 // If we are checking and assigning the raycast to the right, assign the raycast's angle to the right clamp
                 if (assignRightClamp)
@@ -280,7 +276,7 @@ public class PlayerController : MonoBehaviour
                     {
                         rightClamp = raycastAngleDegrees;
                         detectedImpassable = true; // Shows the raycast was successful
-                        Debug.Log("Right Clamp Confirmed angle at: " + (raycastAngleDegrees - confirmCastAngle));
+                        // Debug.Log("Right Clamp Confirmed angle at: " + (raycastAngleDegrees - confirmCastAngle));
                     }
                     else { Debug.Log("Right Clamp failed to confirm angle at: " + (raycastAngleDegrees - confirmCastAngle)); }
                 }
@@ -308,7 +304,7 @@ public class PlayerController : MonoBehaviour
                     {
                         leftClamp = raycastAngleDegrees;
                         detectedImpassable = true; // Shows the raycast was successful
-                        Debug.Log("Left Clamp Confirmed angle at: " + (raycastAngleDegrees + confirmCastAngle));
+                        //Debug.Log("Left Clamp Confirmed angle at: " + (raycastAngleDegrees + confirmCastAngle));
                     }
                     else { Debug.Log("Left Clamp failed to confirm angle at: " + (raycastAngleDegrees - confirmCastAngle)); }
 
