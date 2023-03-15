@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 6076781734094317499}
   - component: {fileID: 3143327253894901549}
   - component: {fileID: -7135879725710234107}
+  - component: {fileID: -2994405186728460857}
   m_Layer: 0
   m_Name: BulletPrefab
   m_TagString: Untagged
@@ -136,3 +137,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0638383a9fcf8f41a8df4fdbb4f6d48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-2994405186728460857
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7348335685597032051}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 650b3556ae8262e4fa4cd1e3b0e52cd2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 1
+  knockback: 5

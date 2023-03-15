@@ -188,6 +188,10 @@ PrefabInstance:
       propertyPath: slamVelocity
       value: 20
       objectReference: {fileID: 0}
+    - target: {fileID: 1242058865, guid: 7d6416c0196ab0d4d8e908226c86f652, type: 3}
+      propertyPath: baseHP
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 8980386125322786970, guid: 7d6416c0196ab0d4d8e908226c86f652, type: 3}
       propertyPath: m_RootOrder
       value: 2
