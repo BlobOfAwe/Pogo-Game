@@ -259,7 +259,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   whatIsGround:
     serializedVersion: 2
-    m_Bits: 55
+    m_Bits: 119
   groundCheck: {fileID: 8980386124029065641}
   groundDetectRadius: 0.06
   grounded: 0
