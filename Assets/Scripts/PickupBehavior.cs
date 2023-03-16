@@ -13,8 +13,7 @@ public class PickupBehavior : MonoBehaviour
     {
         if (col.CompareTag("Player"))
         {
-            try { stickerManager = col.GetComponent<StickerManager>(); }
-            catch { Debug.LogError("No StickerManager component found in player object"); }
+            stickerManager = col.GetComponentInParent<StickerManager>();
 
             try 
             { 

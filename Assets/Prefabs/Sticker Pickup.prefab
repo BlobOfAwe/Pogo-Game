@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3169318727649824189}
   - component: {fileID: 3169318727649824188}
   - component: {fileID: 3169318727649824163}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Sticker Pickup
   m_TagString: Untagged
   m_Icon: {fileID: 0}
