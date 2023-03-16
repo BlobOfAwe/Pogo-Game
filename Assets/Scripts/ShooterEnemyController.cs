@@ -44,6 +44,7 @@ public class ShooterEnemyController : MonoBehaviour
         GameObject bullet = Instantiate(bulletPrefab, transform.position, transform.rotation);
         //Grabs the rigidbody from the bullet
         Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
+        BoxCollider2D bc = bullet.GetComponent<BoxCollider2D>();
         //Gives the bullet velocity to move at the given direction
         rb.velocity = (isFacingRight ? transform.right : -transform.right) * bulletSpeed;
     }
