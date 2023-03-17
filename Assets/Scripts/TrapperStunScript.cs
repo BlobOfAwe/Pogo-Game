@@ -2,27 +2,27 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyStun : MonoBehaviour
+public class TrapperStunScript : MonoBehaviour
 {
-    /// <summary>
-    /// This script handles the stunning and stopping of the enemy movement. 
-    /// 
-    /// </summary>
 
-
-    //The boolean is there to check if the character is stunned or not, its set to false at the begining. 
     public bool isStunned = false;
+     GroundSlam groundSlam;
 
     //If the enemy collides with something it checks to see what it is, if it is the player then it initiates the stun function
-    private void OnCollisionEnter2D(Collision2D other)
+    private void Start()
     {
-        //Checks if the tag is assigned as Player
+        groundSlam = FindObjectOfType<GroundSlam>();
+        
+    }
+    private void OnTriggerEnter2D(Collider2D other)
+    {
         if (other.gameObject.tag == "Player")
         {
-            //Initiates the stun function
-            Stun();
+            if (groundSlam.isSlamming)
+            {
+                Stun();
+            }
         }
-        
     }
     //Stun function checks to see if the enemy is not stunned, then stuns it
     public void Stun()
@@ -32,7 +32,7 @@ public class EnemyStun : MonoBehaviour
         {
             //Stuns the enemy if it is indeed stunned
             isStunned = true;
+            print("Trapper is now stunned");
         }
     }
 }
-

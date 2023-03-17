@@ -21,7 +21,7 @@ public class GroundSlam : MonoBehaviour
     void Update()
     {
         // If the player is pressing the left shift button, they are not grounded, and they are not already slamming
-        if (Input.GetKey(KeyCode.LeftShift) && !groundCheck.grounded && !isSlamming)
+        if (Input.GetKey(KeyCode.S) && !groundCheck.grounded && !isSlamming)
         {
             isSlamming = true; // Mark the player as slamming
             playerRB.velocity = new Vector2(0, -slamVelocity); // Set the player's velocity to be directly downward at slamVelocity
