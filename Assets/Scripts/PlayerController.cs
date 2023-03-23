@@ -157,13 +157,13 @@ public class PlayerController : MonoBehaviour
         // If the A key is pressed down or held
         if (Input.GetKey(KeyCode.A) && playerRB.rotation <= leftClamp)
         {
-            playerRB.MoveRotation(playerRB.rotation + torque);
+            playerRB.rotation = playerRB.rotation + torque;
         }
 
         // If the D key is pressed down or held
         else if (Input.GetKey(KeyCode.D) && playerRB.rotation >= rightClamp)
         {
-            playerRB.MoveRotation(playerRB.rotation - torque);
+            playerRB.rotation = playerRB.rotation - torque;
         }
     }
 
