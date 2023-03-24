@@ -18,9 +18,11 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float springConstant = 10f; // A physics term representing how hard a spring is to move. A higher value means less charge is required to produce a lot of jump force.
     [SerializeField] float springCharge = 0; // Represents the displacement of a spring from its equilibrium position. This indicates how strong the jump will be.
     [SerializeField] float maxCharge = 30; // Represents the maximum displacement (compression) of the spring. This indicates the maximum power of a jump.
+    [SerializeField] float minCharge = 5; // What is the minimum power of the jump
     [SerializeField] float springChargeRate = 0.5f; // How much charge is added to the spring each frame
     [SerializeField] float accelRate = 0.5f; // Represents the amount of time it takes for the spring to return to equilibrium position, ie; how long it takes for the jump force to be applied
     public float releaseTime; // Represents how much time is left since the jump began, before all the stored force has been applied to the pogo
+    private float chargeAtJump; // When the player jumps, this variable takes the value of springCharge, it is then used by the coroutine to calculate the jump
 
     [Header("Rotation")]
     [SerializeField] float torque = 5; // How quickly the player rotates
@@ -105,6 +107,16 @@ public class PlayerController : MonoBehaviour
             // ...and the player is grounded...
             if (groundCeilingCheck.grounded)
             {
+                // If the stored charge is less than the minimum charge, bring it up to minimum
+                if (springCharge < minCharge)
+                {
+                    springCharge = minCharge;
+                }
+
+                // Set the charge to 0, and assign the stored charge to the dynamic variable chargeAtJump
+                chargeAtJump = springCharge;
+                springCharge = 0;
+
                 // ...start the release timer
                 releaseTime = accelRate;
                 // ...make the player Dynamic...
@@ -174,14 +186,14 @@ public class PlayerController : MonoBehaviour
         // As long as the relaseTime timer is not at 0
         while (releaseTime > 0)
         {
-            float releasedCharge = springCharge * (Time.deltaTime / releaseTime); // Represents the change in displacement of the spring since the last call
+            float releasedCharge = chargeAtJump * (Time.deltaTime / releaseTime); // Represents the change in displacement of the spring since the last call
             float jumpForce = releasedCharge * springConstant; // Represents the released force from the change in the spring's displacement
             
             // Apply the released force to the player's rigidbody on its local Y axis
             playerRB.AddRelativeForce(new Vector2(0, jumpForce));
 
             // Remove the released charge from the stored charge
-            springCharge -= releasedCharge;
+            chargeAtJump -= releasedCharge;
 
             // Remove the time passed from the time remaining
             releaseTime -= Time.deltaTime;

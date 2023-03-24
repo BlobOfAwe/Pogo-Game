@@ -14,7 +14,7 @@ public class GroundCeilingCheck : MonoBehaviour
     [SerializeField] float groundDetectRadius; // Distance that groundCheck checks to see if it is on the ground
     public bool grounded; // Is the object grounded
 
-    public void FixedUpdate()
+    public void Update()
     {
         // Sets a CircleCast at groundCheck's position, with groundDetectRadius, checking for layers included in whatIsGround
         Collider2D[] colliders = Physics2D.OverlapCircleAll(groundCheck.transform.position, groundDetectRadius, whatIsGround);
