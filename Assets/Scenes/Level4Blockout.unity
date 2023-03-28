@@ -1236,7 +1236,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 415103502, guid: 7d6416c0196ab0d4d8e908226c86f652, type: 3}
       propertyPath: springChargeRate
-      value: 3
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 415103504, guid: 7d6416c0196ab0d4d8e908226c86f652, type: 3}
       propertyPath: groundDetectRadius

@@ -6,7 +6,7 @@ public class TrapperStunScript : MonoBehaviour
 {
 
     public bool isStunned = false;
-     GroundSlam groundSlam;
+    GroundSlam groundSlam;
 
     //If the enemy collides with something it checks to see what it is, if it is the player then it initiates the stun function
     private void Start()
@@ -32,7 +32,7 @@ public class TrapperStunScript : MonoBehaviour
         {
             //Stuns the enemy if it is indeed stunned
             isStunned = true;
-            print("Trapper is now stunned");
+            Debug.Log("Trapper is now stunned");
         }
     }
 }

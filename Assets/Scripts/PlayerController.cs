@@ -60,29 +60,6 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // If the player is grounded and they are not in the middle of a jump...
-        if (groundCeilingCheck.grounded && releaseTime <= 0)
-        {
-            // Make them kinematic, and freeze all momentum. This allows the player to rotate freely without dealing with gravity
-            playerRB.bodyType = RigidbodyType2D.Kinematic;
-            playerRB.velocity = Vector2.zero;
-            playerRB.angularVelocity = 0;
-
-            // If the player has not marked their rotation since being grounded
-            if (!hasSetStartAngle)
-            {
-                // Note the player's rotation as they land, this will be the angle the raycasts begin at
-                startRaycastAngleFrom = playerRB.rotation;
-                hasSetStartAngle = true;
-            }
-        }
-        
-        // Otherwise, the player is jumping, allow physics to be applied normally
-        else
-        {
-            playerRB.bodyType = RigidbodyType2D.Dynamic;
-        }
-
         // If the Space key is pressed or is being held...
         if (Input.GetKey(KeyCode.Space))
         {
@@ -90,7 +67,7 @@ public class PlayerController : MonoBehaviour
             if (springCharge < maxCharge)
             {
                 // ...increase the charge by the charge rate.
-                springCharge += springChargeRate;
+                springCharge += springChargeRate * Time.deltaTime;
             }
 
             // ...and the springCharge is at or above the max...
@@ -165,7 +142,30 @@ public class PlayerController : MonoBehaviour
 
     // FixedUpdate is called at a fixed rate, whenever unity makes physics calculations. This may be more or less often than Update.
     private void FixedUpdate()
-    {        
+    {
+        // If the player is grounded and they are not in the middle of a jump...
+        if (groundCeilingCheck.grounded && releaseTime <= 0)
+        {
+            // Make them kinematic, and freeze all momentum. This allows the player to rotate freely without dealing with gravity
+            playerRB.bodyType = RigidbodyType2D.Kinematic;
+            playerRB.velocity = Vector2.zero;
+            playerRB.angularVelocity = 0;
+
+            // If the player has not marked their rotation since being grounded
+            if (!hasSetStartAngle)
+            {
+                // Note the player's rotation as they land, this will be the angle the raycasts begin at
+                startRaycastAngleFrom = playerRB.rotation;
+                hasSetStartAngle = true;
+            }
+        }
+
+        // Otherwise, the player is jumping, allow physics to be applied normally
+        else
+        {
+            playerRB.bodyType = RigidbodyType2D.Dynamic;
+        }
+
         // If the A key is pressed down or held
         if (Input.GetKey(KeyCode.A) && playerRB.rotation <= leftClamp)
         {
