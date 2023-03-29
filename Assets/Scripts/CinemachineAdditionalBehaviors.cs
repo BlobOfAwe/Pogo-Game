@@ -12,6 +12,7 @@ public class CinemachineAdditionalBehaviors : MonoBehaviour
     private float SCREEN_Y = 0.5f; // The default position of the Screen's Y position
     private bool waiting; // True if the cinemachine is not offset to be below the player
     private float timeDynamic; // How long in seconds the player has spent dynamic
+    private float timeKinematic; // How long in seconds the player has spent kinematic
 
     [SerializeField] Rigidbody2D followObject; // The object followed by the cinemachine
     [SerializeField] CinemachineVirtualCamera cinemachine; // The cinemachine
@@ -56,6 +57,7 @@ public class CinemachineAdditionalBehaviors : MonoBehaviour
         // If the followed object (the player) is NOT kinematic...
         else
         {
+            timeKinematic = 0;
             if (timeDynamic < waitToLook) { timeDynamic += Time.deltaTime; Debug.Log(timeDynamic); }
             else { transposer.m_TrackedObjectOffset = new Vector2(0, SmoothAdjust(transposer.m_TrackedObjectOffset.y, -lookAheadDistance)); Debug.Log("adjusting camera"); }
         }

@@ -11771,7 +11771,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lookAheadDistance: 3
-  adjustSpeed: 7
+  adjustSpeed: 3.5
   peekTarget: 0.25
   waitToLook: 0.7
   followObject: {fileID: 0}

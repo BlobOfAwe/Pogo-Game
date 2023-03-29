@@ -49,8 +49,8 @@ public class RocketBoost : MonoBehaviour
             // Remove the time passed from the time remaining
             timer -= Time.deltaTime;
 
-            // Wait for the next frame before being called again
-            yield return null;
+            // Wait for the next physics update before being called again
+            yield return new WaitForFixedUpdate();
         }
     }
 }
