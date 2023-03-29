@@ -10,6 +10,7 @@ public class ShooterEnemyController : MonoBehaviour
     /// it lets the player assign the bullet pbject and calls to the enemyStun script to stun the enemy if the player collides with it
     /// </summary>
     //The projectile 
+    float zOffset = 0.0f; // Example offset value for z-axis
     public GameObject bulletPrefab;
     //Projectile speed
     public float bulletSpeed = 5f;
@@ -22,10 +23,12 @@ public class ShooterEnemyController : MonoBehaviour
     //The time when the next shot can be fired
     private float nextFireTime;
 
+
     private void Start()
     {
+        
         //Gets the functions from the EnemyStun script
-        enemyStun = GetComponentInChildren<EnemyStun>();
+        enemyStun = GetComponentInParent<EnemyStun>();
     }
     void Update()
     {
@@ -35,7 +38,7 @@ public class ShooterEnemyController : MonoBehaviour
             nextFireTime = Time.time + timeBetweenShots;
             ShootProjectile();
         }
-
+        
     }
     //Function that handles the shooting
     private void ShootProjectile()

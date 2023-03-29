@@ -43,6 +43,10 @@ PrefabInstance:
       propertyPath: m_Offset.x
       value: 0.074872226
       objectReference: {fileID: 0}
+    - target: {fileID: 3444648874545753619, guid: a0b961bb0296fd249aded7e23f74c6bd, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: fdac97556cff8a8448adfc8e2be349bd, type: 2}
     - target: {fileID: 5137532444723769621, guid: a0b961bb0296fd249aded7e23f74c6bd, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.6974297
@@ -101,12 +105,20 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6437930655932412625, guid: a0b961bb0296fd249aded7e23f74c6bd, type: 3}
       propertyPath: m_FlipX
-      value: 1
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6437930655932412625, guid: a0b961bb0296fd249aded7e23f74c6bd, type: 3}
+      propertyPath: m_Size.x
+      value: 2.3999999
+      objectReference: {fileID: 0}
+    - target: {fileID: 6437930655932412625, guid: a0b961bb0296fd249aded7e23f74c6bd, type: 3}
+      propertyPath: m_Size.y
+      value: 2.4023438
       objectReference: {fileID: 0}
     - target: {fileID: 6437930655932412625, guid: a0b961bb0296fd249aded7e23f74c6bd, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: e6064a25ae758fe4b87e7f7e48d79daf, type: 3}
+      objectReference: {fileID: -521116267, guid: 5ad3ec00047cd124eb952cb4df2c45a3, type: 3}
     - target: {fileID: 6437930655932412628, guid: a0b961bb0296fd249aded7e23f74c6bd, type: 3}
       propertyPath: m_Name
       value: GroundPatroller Variant
@@ -172,8 +184,8 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2.56, y: 1.92}
-    newSize: {x: 1, y: 1}
+    oldSize: {x: 2.3999999, y: 2.4023438}
+    newSize: {x: 2.3999999, y: 2.4023438}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
