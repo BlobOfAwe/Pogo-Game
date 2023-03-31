@@ -162,6 +162,7 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 0}
     - {fileID: 6437930655932412630, guid: a0b961bb0296fd249aded7e23f74c6bd, type: 3}
+    - {fileID: 4347626327564276954, guid: a0b961bb0296fd249aded7e23f74c6bd, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: a0b961bb0296fd249aded7e23f74c6bd, type: 3}
 --- !u!1 &2725239678288854685 stripped
 GameObject:
@@ -210,3 +211,22 @@ MonoBehaviour:
   maxX: 2
   minX: -2
   facingRight: 1
+--- !u!1 &7113115125757167324 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2179527106721008277, guid: a0b961bb0296fd249aded7e23f74c6bd, type: 3}
+  m_PrefabInstance: {fileID: 8973950976654707785}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &5578694127745636822
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7113115125757167324}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b805178fa0dcae4288e9d5777cbd911, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isStunned: 0
+  stunDuration: 3

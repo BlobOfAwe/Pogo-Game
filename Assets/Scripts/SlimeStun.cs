@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyStun : MonoBehaviour
+public class SlimeStun : MonoBehaviour
 {
     /// <summary>
     /// This script handles the stunning and stopping of the enemy movement. 
@@ -13,6 +13,7 @@ public class EnemyStun : MonoBehaviour
     //The boolean is there to check if the character is stunned or not, its set to false at the begining. 
     public bool isStunned = false;
     public float stunDuration = 3f;
+    private bool isHit = false;
 
     //The countdown timer for the stun
     private float stunTimer = 0f;
@@ -32,6 +33,11 @@ public class EnemyStun : MonoBehaviour
         {
             //Initiates the stun function
             Stun();
+        }
+        if (other.gameObject.tag == "Player" && !isHit)
+        {
+            isHit = true;
+            SlimeTracker.Instance.CounterIncrement();
         }
 
 
