@@ -18,10 +18,14 @@ public class EnemyStun : MonoBehaviour
     private float stunTimer = 0f;
 
     private Animator enemyAnimator;
+    private AudioSource sfx;
+    private SFXClipManager clip;
 
     void Start()
     {
         enemyAnimator = GetComponentInParent<Animator>();
+        sfx = GetComponent<AudioSource>();
+        clip = GameObject.Find("SFXClipManager").GetComponent<SFXClipManager>();
     }
 
     //If the enemy collides with something it checks to see what it is, if it is the player then it initiates the stun function
@@ -44,6 +48,8 @@ public class EnemyStun : MonoBehaviour
         {
             //Stuns the enemy if it is indeed stunned
             isStunned = true;
+            sfx.clip = clip.enemyStun;
+            sfx.Play();
 
             stunTimer = stunDuration;
         }

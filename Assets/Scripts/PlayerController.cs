@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 /// <summary>
 /// The main controller for the player character. This class handles all basic actions the player makes, which are specific to the player.
@@ -41,9 +42,14 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float startRaycastAngleFrom; // Where should the player begin raycasting for obstacles from
     [SerializeField] float confirmCastAngle = 45; // What angle should be added to the second raycast when confirming an obstacle's position
 
+    [Header("UI")]
+    [SerializeField] Slider chargeBar;
+
     [Header("Other")]
     [SerializeField] const int WHILELOOPKILL = 360; // Terminate a while loop after it runs this many times
     private int whileLoopTracker = 0; // Tracks the number of times a while loop has run
+    private AudioSource sfx;
+    private SFXClipManager clip;
 
     private Rigidbody2D playerRB; // The player's rigidbody (Assigned at Start())
     private GroundCeilingCheck groundCeilingCheck; // The GroundCheck class, used to identify when the player is touching the ground.
@@ -55,11 +61,15 @@ public class PlayerController : MonoBehaviour
         // Assign relevant components from the player's gameObject
         playerRB = gameObject.GetComponent<Rigidbody2D>();
         groundCeilingCheck = gameObject.GetComponent<GroundCeilingCheck>();
+        chargeBar = GameObject.Find("ChargeBar").GetComponent<Slider>();
+        sfx = GetComponent<AudioSource>();
+        clip = GameObject.Find("SFXClipManager").GetComponent<SFXClipManager>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        chargeBar.value = springCharge / maxCharge;
         // If the Space key is pressed or is being held...
         if (Input.GetKey(KeyCode.Space))
         {
@@ -102,6 +112,9 @@ public class PlayerController : MonoBehaviour
                 hasSetStartAngle = false;
                 // Begin the jump
                 StartCoroutine("ReleaseSpring");
+                // Play the Jump SFX
+                sfx.clip = clip.jump;
+                sfx.Play();
             }
 
             // ...and the player is not grounded...

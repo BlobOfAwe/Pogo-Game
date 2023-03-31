@@ -11,12 +11,17 @@ public class RocketBoost : MonoBehaviour
     private Rigidbody2D playerRB; // The player's rigidbody (Assigned at Start())
     private GroundCeilingCheck groundCeilingCheck; // The GroundCheck class, used to identify when the player is touching the ground.
 
+    private AudioSource sfx;
+    private SFXClipManager clip;
+
     // Start is called before the first frame update
     void Start()
     {
         // Assign component variables
         playerRB = GetComponent<Rigidbody2D>();
         groundCeilingCheck = GetComponent<GroundCeilingCheck>();
+        sfx = GetComponent<AudioSource>();
+        clip = GameObject.Find("SFXClipManager").GetComponent<SFXClipManager>();
     }
 
     // Update is called once per frame
@@ -28,6 +33,8 @@ public class RocketBoost : MonoBehaviour
             timer = jumpTimer; // Set the timer
             usedBoost = true; // Mark the boost as used
             StartCoroutine("ApplyBoost"); // Apply the boost
+            sfx.clip = clip.boost;
+            sfx.Play();
         }
 
         // If the player is grounded, reset the boost

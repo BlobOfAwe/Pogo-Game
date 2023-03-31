@@ -1,0 +1,64 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1655868014764072497
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6971141012131745529}
+  - component: {fileID: 1974508572020889694}
+  m_Layer: 0
+  m_Name: SFXClipManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6971141012131745529
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1655868014764072497}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1974508572020889694
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1655868014764072497}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ec2eecbdef8e6642b15a461c69b5ad5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  boost: {fileID: 8300000, guid: d476d3a849513c047b7e0885e285540d, type: 3}
+  dash: {fileID: 8300000, guid: 465ed30ead890b84489343478d0a37cd, type: 3}
+  jumpPrep: {fileID: 8300000, guid: 7782b03be6b467541b264459007a74d2, type: 3}
+  jump: {fileID: 8300000, guid: a94bb6e497882df45aec65e4e4fab197, type: 3}
+  landing: {fileID: 8300000, guid: 354622126560b52448604c48ccb09b72, type: 3}
+  slamImpact: {fileID: 8300000, guid: 7985a35f186ee6d42a0c3884114291a2, type: 3}
+  damage: {fileID: 8300000, guid: 1087013cacc7f7e4e89b0656fe0f9c6b, type: 3}
+  death: {fileID: 8300000, guid: f3a94bacd1433fe4093f75200f69fde4, type: 3}
+  respawn: {fileID: 8300000, guid: c78eb627b559f5a41b544247a49e8dce, type: 3}
+  enemyStun: {fileID: 8300000, guid: b56712f20d06570458a09f15d61e0ec8, type: 3}
+  shooter: {fileID: 8300000, guid: 4e2f32a9471472247b905a41106556d5, type: 3}
+  slimeAmbient: {fileID: 8300000, guid: 37b22feac216e8c49af2518ed3e2eea1, type: 3}
+  snalienAmbient: {fileID: 8300000, guid: 0f41ad0fddaf5e843bfde5c14336fd2c, type: 3}
+  snapper: {fileID: 8300000, guid: a99c0f0c880f891499c955f0a2adad60, type: 3}
+  levelComplete: {fileID: 8300000, guid: 7f92eab7d729c0a4e8690dafc33709fb, type: 3}
+  checkpoint: {fileID: 8300000, guid: 9cfbc0dee6c50944baa8f4ef50b9f4d6, type: 3}
+  collect: {fileID: 8300000, guid: 6d3826bfc28767448b02bd92199417b6, type: 3}
+  woodBreaking: {fileID: 8300000, guid: 1e2e54cc4ba490a4288f04e6152ba526, type: 3}

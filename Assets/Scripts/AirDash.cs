@@ -11,6 +11,9 @@ public class AirDash : MonoBehaviour
     private GroundCeilingCheck groundCeilingCheck; // The GroundCheck class, used to identify when the player is touching the ground.
     private PlayerController playerController; // The PlayerController class, used for the player's basic movement
 
+    private AudioSource sfx;
+    private SFXClipManager clip;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -18,6 +21,9 @@ public class AirDash : MonoBehaviour
         playerRB = GetComponent<Rigidbody2D>();
         groundCeilingCheck = GetComponent<GroundCeilingCheck>();
         playerController = GetComponent<PlayerController>();
+
+        sfx = GetComponent<AudioSource>();
+        clip = GameObject.Find("SFXClipManager").GetComponent<SFXClipManager>();
     }
 
     // Update is called once per frame
@@ -28,6 +34,8 @@ public class AirDash : MonoBehaviour
         {
             usedDash = true; // Mark the dash as used
             playerRB.velocity = new Vector2(-dashSpeed, playerRB.velocity.y); // Add the dash speed to the player's velocity left
+            sfx.clip = clip.dash;
+            sfx.Play();
         }
 
         // If the player is not grounded, has not used their dash yet, and presses the right arrow key...
@@ -35,6 +43,8 @@ public class AirDash : MonoBehaviour
         {
             usedDash = true; // Mark the dash as used
             playerRB.velocity = new Vector2(dashSpeed, playerRB.velocity.y); // Add the dash speed to the player's velocity right
+            sfx.clip = clip.dash;
+            sfx.Play();
         }
 
         // If the player is grounded, reset the dash

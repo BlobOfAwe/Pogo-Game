@@ -14,6 +14,7 @@ public class WhiteboxDestructibleObject : MonoBehaviour
     [SerializeField] Color defaultColor = Color.yellow; // The colour tint for the sprite when the object is solid
     [SerializeField] Color brokenColor = Color.blue; // The colour tint for the sprite when the object is broken (not solid)
     [SerializeField] float restoreTimer = 10; // The time in seconds before the object becomes solid again
+    private AudioSource sfx;
 
     // Start is called before the first frame update
     void Start()
@@ -34,6 +35,7 @@ public class WhiteboxDestructibleObject : MonoBehaviour
             {
                 spriteRenderer.color = brokenColor; // Change the colour to the broken colour
                 destructibleCollider.enabled = false; // Disable the collider
+                sfx.Play();
                 StartCoroutine("RestoreObject"); // Start the countdown to make the object solid again
             }
         }

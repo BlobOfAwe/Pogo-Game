@@ -16,13 +16,13 @@ public class SlimePatrol : MonoBehaviour
     public bool facingRight = true; // Boolean checks if the enemy is facing right, is set to active at the start
 
     private Rigidbody2D rb; //Sets up the rigidbody 
-    private EnemyStun enemyStun; // The script that controls whether the enemy is stunned or not
+    private SlimeStun slimeStun; // The script that controls whether the enemy is stunned or not
 
     //At the start it gets rigidbody componenet 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        enemyStun = GetComponentInChildren<EnemyStun>();
+        slimeStun = GetComponentInChildren<SlimeStun>();
     }
 
     void Update()
@@ -47,7 +47,7 @@ public class SlimePatrol : MonoBehaviour
         }
         //Responsible for moving the enemy
         //Checks if the enemy is is stunned or not then if it is it changes its speed to 0
-        if (enemyStun.isStunned)
+        if (slimeStun.isStunned)
         {
             { 
                 rb.velocity = Vector2.zero;
@@ -64,7 +64,7 @@ public class SlimePatrol : MonoBehaviour
         }
 
         //DEBUG: If R is pressed, un-stun the enemy
-        if (Input.GetKey(KeyCode.R)) { enemyStun.isStunned = false; }
+        if (Input.GetKey(KeyCode.R)) { slimeStun.isStunned = false; }
     }
 
 }

@@ -9,12 +9,18 @@ public class GroundSlam : MonoBehaviour
     [SerializeField] float slamVelocity = 10; // The speed of the player when slamming
     public bool isSlamming; // Is the player in the middle of a slam
 
+    private AudioSource sfx;
+    private SFXClipManager clip;
+
     // Start is called before the first frame update
     void Start()
     {
         // Assign component variables
         playerRB = GetComponent<Rigidbody2D>();
         groundCheck = GetComponent<GroundCeilingCheck>();
+
+        sfx = GetComponent<AudioSource>();
+        clip = GameObject.Find("SFXClipManager").GetComponent<SFXClipManager>();
     }
 
     // Update is called once per frame
@@ -31,6 +37,8 @@ public class GroundSlam : MonoBehaviour
         else if (groundCheck.grounded && isSlamming)
         {
             isSlamming = false;
+            sfx.clip = clip.slamImpact;
+            sfx.Play();
         }
     }
 }

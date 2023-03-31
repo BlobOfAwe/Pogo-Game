@@ -6,9 +6,18 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 0
-    path: Assets/Scenes/Level4Blockout.unity
-    guid: c53d46273e4c2a1479f1aa0d8f5b09f7
-  - enabled: 1
     path: Assets/Scenes/SnalienTest.unity
     guid: 4b8e139654463534d968ffc5b98983e4
+  - enabled: 1
+    path: Assets/Scenes/Level1.unity
+    guid: ba575bb2fec1ed8489593ec2f2cc3b5c
+  - enabled: 1
+    path: Assets/Scenes/Level2Blockout.unity
+    guid: fff29d628c84dc24abc2716871c263de
+  - enabled: 1
+    path: Assets/Scenes/Level3.unity
+    guid: 1da774b76612f724bbb3285057ac8b39
+  - enabled: 1
+    path: Assets/Scenes/Level4Blockout.unity
+    guid: c53d46273e4c2a1479f1aa0d8f5b09f7
   m_configObjects: {}

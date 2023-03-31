@@ -9,6 +9,8 @@ public class TrapperStunScript : MonoBehaviour
     GroundSlam groundSlam;
     private float biteTimer = 0f;
     public float BiteDuration = 3f;
+    private AudioSource sfx;
+    private SFXClipManager clip;
 
     private Animator enemyAnimator;
 
@@ -38,6 +40,8 @@ public class TrapperStunScript : MonoBehaviour
             //Stuns the enemy if it is indeed stunned
             isStunned = true;
             Debug.Log("Trapper is now stunned");
+            sfx.clip = clip.enemyStun;
+            sfx.Play();
         }
        // if (!enemyAnimator.GetBool("IsStunned"))
       //  {
