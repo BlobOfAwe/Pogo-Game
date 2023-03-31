@@ -155,8 +155,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2111920412053962461}
   - component: {fileID: 4205930651941516711}
-  - component: {fileID: 4553120510747072085}
   - component: {fileID: 205488853646178386}
+  - component: {fileID: 8300268341593298179}
   m_Layer: 6
   m_Name: EnemyStunBox
   m_TagString: Enemy
@@ -205,20 +205,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.4368312, y: 0.37453747}
   m_EdgeRadius: 0
---- !u!114 &4553120510747072085
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 989310321572324677}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bb678b508c3179d43903990baac321da, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isStunned: 0
-  stunDuration: 3
 --- !u!82 &205488853646178386
 AudioSource:
   m_ObjectHideFlags: 0
@@ -315,6 +301,20 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &8300268341593298179
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 989310321572324677}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b805178fa0dcae4288e9d5777cbd911, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isStunned: 0
+  stunDuration: 3
 --- !u!1 &3703058864026064833
 GameObject:
   m_ObjectHideFlags: 0
