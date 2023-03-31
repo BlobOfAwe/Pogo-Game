@@ -4885,7 +4885,7 @@ PrefabInstance:
       value: 352.86
       objectReference: {fileID: 0}
     m_RemovedComponents:
-    - {fileID: 7647368076410758188, guid: 10fa183edbaccb847b99dea8ce5411fd, type: 3}
+    - {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: 10fa183edbaccb847b99dea8ce5411fd, type: 3}
 --- !u!1 &511644158
 GameObject:
@@ -15374,6 +15374,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 8305468868637154296, guid: 7d6416c0196ab0d4d8e908226c86f652, type: 3}
+      propertyPath: m_SortingOrder
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 8980386125322786970, guid: 7d6416c0196ab0d4d8e908226c86f652, type: 3}
       propertyPath: m_RootOrder
       value: 1
