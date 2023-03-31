@@ -161,6 +161,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 0}
+    - {fileID: 6437930655932412630, guid: a0b961bb0296fd249aded7e23f74c6bd, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: a0b961bb0296fd249aded7e23f74c6bd, type: 3}
 --- !u!1 &2725239678288854685 stripped
 GameObject:
@@ -193,6 +194,22 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.20123291, y: 0.12082863}
   m_EdgeRadius: 0
+--- !u!114 &6338569226755502613
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2725239678288854685}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57f01513449206247b0c490364cb34d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 2
+  maxX: 2
+  minX: -2
+  facingRight: 1
 --- !u!114 &7647368076410758188
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -206,3 +223,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isStunned: 0
+  stunDuration: 3

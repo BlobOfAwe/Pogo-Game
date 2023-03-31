@@ -10,7 +10,6 @@ public class ShooterEnemyController : MonoBehaviour
     /// it lets the player assign the bullet pbject and calls to the enemyStun script to stun the enemy if the player collides with it
     /// </summary>
     //The projectile 
-    float zOffset = 0.0f; // Example offset value for z-axis
     public GameObject bulletPrefab;
     //Projectile speed
     public float bulletSpeed = 5f;
