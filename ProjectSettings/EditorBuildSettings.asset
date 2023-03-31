@@ -5,7 +5,10 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Level4Blockout.unity
     guid: c53d46273e4c2a1479f1aa0d8f5b09f7
+  - enabled: 1
+    path: Assets/Scenes/SnalienTest.unity
+    guid: 4b8e139654463534d968ffc5b98983e4
   m_configObjects: {}
