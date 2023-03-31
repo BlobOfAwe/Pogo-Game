@@ -50,6 +50,7 @@ public class PlayerController : MonoBehaviour
     private int whileLoopTracker = 0; // Tracks the number of times a while loop has run
     private AudioSource sfx;
     private SFXClipManager clip;
+    private Animator animator;
 
     private Rigidbody2D playerRB; // The player's rigidbody (Assigned at Start())
     private GroundCeilingCheck groundCeilingCheck; // The GroundCheck class, used to identify when the player is touching the ground.
@@ -64,6 +65,7 @@ public class PlayerController : MonoBehaviour
         chargeBar = GameObject.Find("ChargeBar").GetComponent<Slider>();
         sfx = GetComponent<AudioSource>();
         clip = GameObject.Find("SFXClipManager").GetComponent<SFXClipManager>();
+        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -73,6 +75,9 @@ public class PlayerController : MonoBehaviour
         // If the Space key is pressed or is being held...
         if (Input.GetKey(KeyCode.Space))
         {
+            // Set the animator boolean "charging" to true to begin the charging animation
+            animator.SetBool("charging", true);
+
             // ...and the springCharge is not at max...
             if (springCharge < maxCharge)
             {
@@ -91,6 +96,9 @@ public class PlayerController : MonoBehaviour
         // If the space key was released this frame...
         if (Input.GetKeyUp(KeyCode.Space))
         {
+            // Set the animator boolean "charging" to false to indicate the jump has begun
+            animator.SetBool("charging", false);
+
             // ...and the player is grounded...
             if (groundCeilingCheck.grounded)
             {
@@ -164,13 +172,21 @@ public class PlayerController : MonoBehaviour
             playerRB.velocity = Vector2.zero;
             playerRB.angularVelocity = 0;
 
+
             // If the player has not marked their rotation since being grounded
             if (!hasSetStartAngle)
             {
                 // Note the player's rotation as they land, this will be the angle the raycasts begin at
                 startRaycastAngleFrom = playerRB.rotation;
                 hasSetStartAngle = true;
+
+                // Indicate the player landed this update, starting the landing animation
+                animator.SetTrigger("landing");
+                
+                Debug.Log("Just Landed supposedly");
             }
+
+            else { animator.ResetTrigger("landing"); }
         }
 
         // Otherwise, the player is jumping, allow physics to be applied normally
