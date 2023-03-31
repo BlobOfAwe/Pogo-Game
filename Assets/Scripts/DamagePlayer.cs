@@ -24,6 +24,9 @@ public class DamagePlayer : MonoBehaviour
             GameObject player = col.gameObject;
             sfx.clip = clip.damage;
             sfx.Play();
+
+            Animator anim = player.GetComponentInParent<Animator>();
+            anim.SetTrigger("damaged");
             
 
             player.GetComponentInParent<HealthManager>().hp -= damage; // subtract damage from the player's hp
