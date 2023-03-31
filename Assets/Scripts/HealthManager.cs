@@ -10,6 +10,7 @@ public class HealthManager : MonoBehaviour
     private Rigidbody2D rb; // The player's rigidbody
     private AudioSource sfx;
     private SFXClipManager clip;
+    private Animator playerAnimator;
 
     private void Start()
     {
@@ -17,6 +18,7 @@ public class HealthManager : MonoBehaviour
         rb = GetComponent<Rigidbody2D>(); // Initialize rigidbody
         sfx = GetComponent<AudioSource>();
         clip = GameObject.Find("SFXClipManager").GetComponent<SFXClipManager>();
+        playerAnimator = GetComponent<Animator>();
     }
     // Update is called once per frame
     void Update()
@@ -26,11 +28,12 @@ public class HealthManager : MonoBehaviour
         {
             sfx.clip = clip.death;
             sfx.Play();
-
+            playerAnimator.SetTrigger("IsDead");
             transform.position = checkpointPos;
             rb.velocity = Vector2.zero;
             rb.rotation = 0;
             hp = baseHP;
+            playerAnimator.SetTrigger("IsDead");
         }
     }
 }
