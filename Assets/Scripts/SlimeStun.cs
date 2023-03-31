@@ -12,11 +12,10 @@ public class SlimeStun : MonoBehaviour
 
     //The boolean is there to check if the character is stunned or not, its set to false at the begining. 
     public bool isStunned = false;
-    public float stunDuration = 3f;
+
     private bool isHit = false;
 
     //The countdown timer for the stun
-    private float stunTimer = 0f;
 
     private Animator enemyAnimator;
     private AudioSource sfx;
@@ -56,39 +55,10 @@ public class SlimeStun : MonoBehaviour
             isStunned = true;
             sfx.clip = clip.enemyStun;
             sfx.Play();
-
-            stunTimer = stunDuration;
         }
         if (!enemyAnimator.GetBool("IsStunned"))
         {
             enemyAnimator.SetBool("IsStunned", true);
-            Invoke("UnStun", stunDuration);
-        }
-    }
-    public void UnStun()
-    {
-        // Checks if the enemy is stunned  
-        if (isStunned)
-        {
-            // Un-stuns the enemy if it is stunned
-            isStunned = false;
-            enemyAnimator.SetBool("IsStunned", false);
-
-        }
-    }
-    private void Update()
-    {
-        //If the enemy is stunned, decrease the stun timer
-        if (isStunned)
-        {
-            stunTimer -= Time.deltaTime;
-
-            //If the stun timer reaches 0, reset the stun state
-            if (stunTimer <= 0f)
-            {
-                isStunned = false;
-                enemyAnimator.SetBool("IsStunned", false);
-            }
         }
     }
 }
