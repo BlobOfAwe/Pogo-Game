@@ -18,9 +18,11 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float springConstant = 10f; // A physics term representing how hard a spring is to move. A higher value means less charge is required to produce a lot of jump force.
     [SerializeField] float springCharge = 0; // Represents the displacement of a spring from its equilibrium position. This indicates how strong the jump will be.
     [SerializeField] float maxCharge = 30; // Represents the maximum displacement (compression) of the spring. This indicates the maximum power of a jump.
+    [SerializeField] float minCharge = 5; // What is the minimum power of the jump
     [SerializeField] float springChargeRate = 0.5f; // How much charge is added to the spring each frame
     [SerializeField] float accelRate = 0.5f; // Represents the amount of time it takes for the spring to return to equilibrium position, ie; how long it takes for the jump force to be applied
     public float releaseTime; // Represents how much time is left since the jump began, before all the stored force has been applied to the pogo
+    private float chargeAtJump; // When the player jumps, this variable takes the value of springCharge, it is then used by the coroutine to calculate the jump
 
     [Header("Rotation")]
     [SerializeField] float torque = 5; // How quickly the player rotates
@@ -58,29 +60,6 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // If the player is grounded and they are not in the middle of a jump...
-        if (groundCeilingCheck.grounded && releaseTime <= 0)
-        {
-            // Make them kinematic, and freeze all momentum. This allows the player to rotate freely without dealing with gravity
-            playerRB.bodyType = RigidbodyType2D.Kinematic;
-            playerRB.velocity = Vector2.zero;
-            playerRB.angularVelocity = 0;
-
-            // If the player has not marked their rotation since being grounded
-            if (!hasSetStartAngle)
-            {
-                // Note the player's rotation as they land, this will be the angle the raycasts begin at
-                startRaycastAngleFrom = playerRB.rotation;
-                hasSetStartAngle = true;
-            }
-        }
-        
-        // Otherwise, the player is jumping, allow physics to be applied normally
-        else
-        {
-            playerRB.bodyType = RigidbodyType2D.Dynamic;
-        }
-
         // If the Space key is pressed or is being held...
         if (Input.GetKey(KeyCode.Space))
         {
@@ -88,7 +67,7 @@ public class PlayerController : MonoBehaviour
             if (springCharge < maxCharge)
             {
                 // ...increase the charge by the charge rate.
-                springCharge += springChargeRate;
+                springCharge += springChargeRate * Time.deltaTime;
             }
 
             // ...and the springCharge is at or above the max...
@@ -105,6 +84,16 @@ public class PlayerController : MonoBehaviour
             // ...and the player is grounded...
             if (groundCeilingCheck.grounded)
             {
+                // If the stored charge is less than the minimum charge, bring it up to minimum
+                if (springCharge < minCharge)
+                {
+                    springCharge = minCharge;
+                }
+
+                // Set the charge to 0, and assign the stored charge to the dynamic variable chargeAtJump
+                chargeAtJump = springCharge;
+                springCharge = 0;
+
                 // ...start the release timer
                 releaseTime = accelRate;
                 // ...make the player Dynamic...
@@ -153,17 +142,40 @@ public class PlayerController : MonoBehaviour
 
     // FixedUpdate is called at a fixed rate, whenever unity makes physics calculations. This may be more or less often than Update.
     private void FixedUpdate()
-    {        
+    {
+        // If the player is grounded and they are not in the middle of a jump...
+        if (groundCeilingCheck.grounded && releaseTime <= 0)
+        {
+            // Make them kinematic, and freeze all momentum. This allows the player to rotate freely without dealing with gravity
+            playerRB.bodyType = RigidbodyType2D.Kinematic;
+            playerRB.velocity = Vector2.zero;
+            playerRB.angularVelocity = 0;
+
+            // If the player has not marked their rotation since being grounded
+            if (!hasSetStartAngle)
+            {
+                // Note the player's rotation as they land, this will be the angle the raycasts begin at
+                startRaycastAngleFrom = playerRB.rotation;
+                hasSetStartAngle = true;
+            }
+        }
+
+        // Otherwise, the player is jumping, allow physics to be applied normally
+        else
+        {
+            playerRB.bodyType = RigidbodyType2D.Dynamic;
+        }
+
         // If the A key is pressed down or held
         if (Input.GetKey(KeyCode.A) && playerRB.rotation <= leftClamp)
         {
-            playerRB.MoveRotation(playerRB.rotation + torque);
+            playerRB.rotation = playerRB.rotation + torque;
         }
 
         // If the D key is pressed down or held
         else if (Input.GetKey(KeyCode.D) && playerRB.rotation >= rightClamp)
         {
-            playerRB.MoveRotation(playerRB.rotation - torque);
+            playerRB.rotation = playerRB.rotation - torque;
         }
     }
 
@@ -174,14 +186,14 @@ public class PlayerController : MonoBehaviour
         // As long as the relaseTime timer is not at 0
         while (releaseTime > 0)
         {
-            float releasedCharge = springCharge * (Time.deltaTime / releaseTime); // Represents the change in displacement of the spring since the last call
+            float releasedCharge = chargeAtJump * (Time.deltaTime / releaseTime); // Represents the change in displacement of the spring since the last call
             float jumpForce = releasedCharge * springConstant; // Represents the released force from the change in the spring's displacement
             
             // Apply the released force to the player's rigidbody on its local Y axis
             playerRB.AddRelativeForce(new Vector2(0, jumpForce));
 
             // Remove the released charge from the stored charge
-            springCharge -= releasedCharge;
+            chargeAtJump -= releasedCharge;
 
             // Remove the time passed from the time remaining
             releaseTime -= Time.deltaTime;

@@ -23,14 +23,14 @@ public class WhiteboxDestructibleObject : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
-    // OnCollisionEnter2D is called on the frame a collision is detected between two colliders
-    void OnCollisionEnter2D(Collision2D col)
+
+    public void TriggerDestroy(Collider2D col)
     {
         // If the collided object has the tag "Player"
-        if (col.gameObject.CompareTag("Player"))
+        if (col.CompareTag("Player"))
         {
             // If the player's GroundSlam component is slamming
-            if (col.gameObject.GetComponent<GroundSlam>().isSlamming)
+            if (col.GetComponent<GroundSlam>().isSlamming) // NOTE: This line will throw an error when any child colliders of the player pass through the trigger. This is normal and does not impact the game.
             {
                 spriteRenderer.color = brokenColor; // Change the colour to the broken colour
                 destructibleCollider.enabled = false; // Disable the collider
