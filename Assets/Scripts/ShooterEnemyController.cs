@@ -22,10 +22,12 @@ public class ShooterEnemyController : MonoBehaviour
     //The time when the next shot can be fired
     private float nextFireTime;
 
+
     private void Start()
     {
+        
         //Gets the functions from the EnemyStun script
-        enemyStun = GetComponentInChildren<EnemyStun>();
+        enemyStun = GetComponentInParent<EnemyStun>();
     }
     void Update()
     {
@@ -35,7 +37,7 @@ public class ShooterEnemyController : MonoBehaviour
             nextFireTime = Time.time + timeBetweenShots;
             ShootProjectile();
         }
-
+        
     }
     //Function that handles the shooting
     private void ShootProjectile()

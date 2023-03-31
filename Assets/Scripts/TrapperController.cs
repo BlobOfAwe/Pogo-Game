@@ -20,5 +20,10 @@ public class TrapperController : MonoBehaviour
         {
             bc.enabled = false;
         }
+        else
+        {
+            bc.enabled = true;
+        }
     }
+
 }

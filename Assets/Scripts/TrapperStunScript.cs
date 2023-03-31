@@ -7,12 +7,17 @@ public class TrapperStunScript : MonoBehaviour
 
     public bool isStunned = false;
     GroundSlam groundSlam;
+    private float biteTimer = 0f;
+    public float BiteDuration = 3f;
+
+    private Animator enemyAnimator;
 
     //If the enemy collides with something it checks to see what it is, if it is the player then it initiates the stun function
     private void Start()
     {
         groundSlam = FindObjectOfType<GroundSlam>();
-        
+        enemyAnimator = GetComponentInParent<Animator>();
+
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -34,5 +39,22 @@ public class TrapperStunScript : MonoBehaviour
             isStunned = true;
             Debug.Log("Trapper is now stunned");
         }
+       // if (!enemyAnimator.GetBool("IsStunned"))
+      //  {
+        //    enemyAnimator.SetBool("IsStunned", true);
+
+       // }
+
     }
+    public void UnStun()
+    {
+        // Checks if the enemy is stunned  
+        if (isStunned)
+        {
+            // Un-stuns the enemy if it is stunned
+            isStunned = false;
+
+        }
+    }
+
 }
