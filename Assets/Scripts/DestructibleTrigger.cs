@@ -8,6 +8,6 @@ public class DestructibleTrigger : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         Debug.Log("Entered Trigger");
-        GetComponentInParent<WhiteboxDestructibleObject>().TriggerDestroy(collision);
+        GetComponentInParent<DestructibleObject>().TriggerDestroy(collision);
     }
 }
