@@ -62,9 +62,5 @@ public class SlimePatrol : MonoBehaviour
             rb.isKinematic = false;
             rb.freezeRotation = false;
         }
-
-        //DEBUG: If R is pressed, un-stun the enemy
-        if (Input.GetKey(KeyCode.R)) { slimeStun.isStunned = false; }
     }
-
 }
