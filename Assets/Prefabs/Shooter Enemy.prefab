@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 867228572823536374}
   - component: {fileID: 867228572823536265}
-  - component: {fileID: 867228572823536375}
   - component: {fileID: 5214516722032205423}
   - component: {fileID: -6202146979329314936}
+  - component: {fileID: -5036828791417882111}
   m_Layer: 0
   m_Name: Shooter Enemy
   m_TagString: Untagged
@@ -90,20 +90,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &867228572823536375
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 867228572823536266}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bb678b508c3179d43903990baac321da, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isStunned: 0
-  stunDuration: 3
 --- !u!50 &5214516722032205423
 Rigidbody2D:
   serializedVersion: 4
@@ -145,6 +131,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &-5036828791417882111
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 867228572823536266}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6a5bba7901bf614c829c62db6b2643e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isStunned: 0
 --- !u!1 &989310321572324677
 GameObject:
   m_ObjectHideFlags: 0
@@ -314,7 +313,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isStunned: 0
-  stunDuration: 3
 --- !u!1 &3703058864026064833
 GameObject:
   m_ObjectHideFlags: 0
