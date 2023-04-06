@@ -11,7 +11,7 @@ public class TrapperStunScript : MonoBehaviour
     public float BiteDuration = 3f;
     private AudioSource sfx;
     private SFXClipManager clip;
-
+    private BoxCollider2D bc;
     private Animator enemyAnimator;
 
     //If the enemy collides with something it checks to see what it is, if it is the player then it initiates the stun function
@@ -19,7 +19,7 @@ public class TrapperStunScript : MonoBehaviour
     {
         groundSlam = FindObjectOfType<GroundSlam>();
         enemyAnimator = GetComponentInParent<Animator>();
-
+        bc = GetComponent<BoxCollider2D>();
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -43,13 +43,18 @@ public class TrapperStunScript : MonoBehaviour
             sfx.clip = clip.enemyStun;
             sfx.Play();
         }
-       // if (!enemyAnimator.GetBool("IsStunned"))
-      //  {
+        if (!enemyAnimator.GetBool("IsStunned"))
+        {
+            enemyAnimator.SetBool("IsStunned", true);
+        }
+        // if (!enemyAnimator.GetBool("IsStunned"))
+        //  {
         //    enemyAnimator.SetBool("IsStunned", true);
 
-       // }
+        // }
 
     }
+
     public void UnStun()
     {
         // Checks if the enemy is stunned  

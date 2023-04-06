@@ -47,7 +47,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 200
+  spritePixelsToUnits: 400
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -110,8 +110,8 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 543.3333
-        height: 363
+        width: 1040.3334
+        height: 1144
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -119,8 +119,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e913c8b2e57e3da40991569dcc39dc2f
-      internalID: 1053815812
+      spriteID: c98654bf38abf7f4f834a8ec23fe33c6
+      internalID: 1988801934
       vertices: []
       indices: 
       edges: []
@@ -129,10 +129,10 @@ TextureImporter:
       name: TrapperStun_1
       rect:
         serializedVersion: 2
-        x: 543
+        x: 1040
         y: 0
-        width: 543.3333
-        height: 363
+        width: 1040.3334
+        height: 1144
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -140,8 +140,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6ef380698288c4c40b286643d0024ba5
-      internalID: 749994859
+      spriteID: aedc4c625afe87d48a53f810fc06ca5e
+      internalID: 1782020184
       vertices: []
       indices: 
       edges: []
@@ -150,10 +150,10 @@ TextureImporter:
       name: TrapperStun_2
       rect:
         serializedVersion: 2
-        x: 1086
+        x: 2080
         y: 0
-        width: 543.3333
-        height: 363
+        width: 1040.3334
+        height: 1144
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -161,8 +161,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0745548143102fa4bb6f72a3f7f84764
-      internalID: -572975556
+      spriteID: d012ebcb05c9389438d36ce9b3407a7e
+      internalID: -34378795
       vertices: []
       indices: 
       edges: []
@@ -178,9 +178,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      TrapperStun_1: 749994859
-      TrapperStun_2: -572975556
-      TrapperStun_0: 1053815812
+      TrapperStun_1: 1782020184
+      TrapperStun_2: -34378795
+      TrapperStun_0: 1988801934
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
