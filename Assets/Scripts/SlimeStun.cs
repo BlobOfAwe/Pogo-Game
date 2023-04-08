@@ -12,7 +12,7 @@ public class SlimeStun : MonoBehaviour
 
     //The boolean is there to check if the character is stunned or not, its set to false at the begining. 
     public bool isStunned = false;
-
+    private SlimeTracker slimeTracker;
     private bool isHit = false;
 
     //The countdown timer for the stun
@@ -23,6 +23,7 @@ public class SlimeStun : MonoBehaviour
 
     void Start()
     {
+        slimeTracker = GameObject.FindObjectOfType<SlimeTracker>();
         enemyAnimator = GetComponentInParent<Animator>();
         sfx = GetComponent<AudioSource>();
         clip = GameObject.Find("SFXClipManager").GetComponent<SFXClipManager>();
@@ -40,7 +41,7 @@ public class SlimeStun : MonoBehaviour
         if (other.gameObject.tag == "Player" && !isHit)
         {
             isHit = true;
-            SlimeTracker.Instance.CounterIncrement();
+            slimeTracker.CounterIncrement();
         }
 
 
