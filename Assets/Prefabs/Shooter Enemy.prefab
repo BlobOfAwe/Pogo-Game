@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 867228572823536265}
   - component: {fileID: 5214516722032205423}
   - component: {fileID: -6202146979329314936}
-  - component: {fileID: -5036828791417882111}
   m_Layer: 0
   m_Name: Shooter Enemy
   m_TagString: Untagged
@@ -131,19 +130,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &-5036828791417882111
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 867228572823536266}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a6a5bba7901bf614c829c62db6b2643e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isStunned: 0
 --- !u!1 &989310321572324677
 GameObject:
   m_ObjectHideFlags: 0
@@ -155,7 +141,7 @@ GameObject:
   - component: {fileID: 2111920412053962461}
   - component: {fileID: 4205930651941516711}
   - component: {fileID: 205488853646178386}
-  - component: {fileID: 8300268341593298179}
+  - component: {fileID: 5899762600889900365}
   m_Layer: 6
   m_Name: EnemyStunBox
   m_TagString: Enemy
@@ -300,7 +286,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &8300268341593298179
+--- !u!114 &5899762600889900365
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -309,7 +295,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 989310321572324677}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8b805178fa0dcae4288e9d5777cbd911, type: 3}
+  m_Script: {fileID: 11500000, guid: a6a5bba7901bf614c829c62db6b2643e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   isStunned: 0

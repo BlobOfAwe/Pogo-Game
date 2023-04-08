@@ -27,7 +27,7 @@ public class ShooterEnemyController : MonoBehaviour
     {
         
         //Gets the functions from the EnemyStun script
-        stun = GetComponentInParent<ShooterStun>();
+        stun = transform.parent.GetComponentInChildren<ShooterStun>();
     }
     void Update()
     {
