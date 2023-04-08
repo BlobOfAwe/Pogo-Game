@@ -18,7 +18,7 @@ public class ShooterEnemyController : MonoBehaviour
     //Checks if the enemy is facing right
     public bool isFacingRight = true;
     //calls the stun function from the EnemyStun script
-    private EnemyStun enemyStun;
+    private ShooterStun stun;
     //The time when the next shot can be fired
     private float nextFireTime;
 
@@ -27,12 +27,12 @@ public class ShooterEnemyController : MonoBehaviour
     {
         
         //Gets the functions from the EnemyStun script
-        enemyStun = GetComponentInParent<EnemyStun>();
+        stun = GetComponentInParent<ShooterStun>();
     }
     void Update()
     {
         //If the enemy is not stunned then it shoots the bullet 
-        if (!enemyStun.isStunned && Time.time > nextFireTime)
+        if (!stun.isStunned && Time.time > nextFireTime)
         {
             nextFireTime = Time.time + timeBetweenShots;
             ShootProjectile();

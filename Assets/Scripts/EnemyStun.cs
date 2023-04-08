@@ -20,12 +20,14 @@ public class EnemyStun : MonoBehaviour
     private Animator enemyAnimator;
     private AudioSource sfx;
     private SFXClipManager clip;
+    private DamagePlayer dmgPlayer;
 
     void Start()
     {
         enemyAnimator = GetComponentInParent<Animator>();
         sfx = GetComponent<AudioSource>();
         clip = GameObject.Find("SFXClipManager").GetComponent<SFXClipManager>();
+        dmgPlayer = transform.parent.GetComponentInChildren<DamagePlayer>();
     }
 
     //If the enemy collides with something it checks to see what it is, if it is the player then it initiates the stun function
@@ -48,6 +50,7 @@ public class EnemyStun : MonoBehaviour
         {
             //Stuns the enemy if it is indeed stunned
             isStunned = true;
+            dmgPlayer.enabled = false;
             sfx.clip = clip.enemyStun;
             sfx.Play();
 
@@ -66,23 +69,9 @@ public class EnemyStun : MonoBehaviour
         {
             // Un-stuns the enemy if it is stunned
             isStunned = false;
+            dmgPlayer.enabled = true;
             enemyAnimator.SetBool("IsStunned", false);
 
-        }
-    }
-    private void Update()
-    {
-        //If the enemy is stunned, decrease the stun timer
-        if (isStunned)
-        {
-            stunTimer -= Time.deltaTime;
-
-            //If the stun timer reaches 0, reset the stun state
-            if (stunTimer <= 0f)
-            {
-                isStunned = false;
-                enemyAnimator.SetBool("IsStunned", false);
-            }
         }
     }
 }

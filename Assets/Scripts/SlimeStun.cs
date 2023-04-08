@@ -20,12 +20,14 @@ public class SlimeStun : MonoBehaviour
     private Animator enemyAnimator;
     private AudioSource sfx;
     private SFXClipManager clip;
+    private DamagePlayer dmgPlayer;
 
     void Start()
     {
         enemyAnimator = GetComponentInParent<Animator>();
         sfx = GetComponent<AudioSource>();
         clip = GameObject.Find("SFXClipManager").GetComponent<SFXClipManager>();
+        dmgPlayer = transform.parent.GetComponentInChildren<DamagePlayer>();
     }
 
     //If the enemy collides with something it checks to see what it is, if it is the player then it initiates the stun function
@@ -53,6 +55,7 @@ public class SlimeStun : MonoBehaviour
         {
             //Stuns the enemy if it is indeed stunned
             isStunned = true;
+            dmgPlayer.enabled = false;
             sfx.clip = clip.enemyStun;
             sfx.Play();
         }

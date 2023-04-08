@@ -13,6 +13,7 @@ public class TrapperStunScript : MonoBehaviour
     private SFXClipManager clip;
     private BoxCollider2D bc;
     private Animator enemyAnimator;
+    private DamagePlayer dmgPlayer;
 
     //If the enemy collides with something it checks to see what it is, if it is the player then it initiates the stun function
     private void Start()
@@ -20,6 +21,7 @@ public class TrapperStunScript : MonoBehaviour
         groundSlam = FindObjectOfType<GroundSlam>();
         enemyAnimator = GetComponentInParent<Animator>();
         bc = GetComponent<BoxCollider2D>();
+        dmgPlayer = transform.parent.GetComponentInChildren<DamagePlayer>();
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -39,6 +41,7 @@ public class TrapperStunScript : MonoBehaviour
         {
             //Stuns the enemy if it is indeed stunned
             isStunned = true;
+            dmgPlayer.enabled = false;
             Debug.Log("Trapper is now stunned");
             sfx.clip = clip.enemyStun;
             sfx.Play();
