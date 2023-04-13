@@ -17,12 +17,12 @@ public class TrapperController : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D other)
     {
         //Checks if the tag is assigned as Player
-        if (other.gameObject.tag == "Player")
+        if (other.gameObject.tag == "Player" && !other.gameObject.GetComponent<GroundSlam>().isSlamming)
         {
+            Debug.Log("hi");
             //Initiates the stun function
            trapperAnimator.SetTrigger("IsBiting");
         }
-
     }
     // Update is called once per frame
     void Update()

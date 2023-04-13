@@ -14,15 +14,6 @@ public class GroundCeilingCheck : MonoBehaviour
     [SerializeField] float groundDetectRadius; // Distance that groundCheck checks to see if it is on the ground
     public bool grounded; // Is the object grounded
 
-    private AudioSource sfx;
-    private SFXClipManager clip;
-
-    private void Start()
-    {
-        sfx = GetComponent<AudioSource>();
-        clip = GameObject.Find("SFXClipManager").GetComponent<SFXClipManager>();
-    }
-
     public void FixedUpdate()
     {
         // Sets a CircleCast at groundCheck's position, with groundDetectRadius, checking for layers included in whatIsGround
@@ -48,8 +39,6 @@ public class GroundCeilingCheck : MonoBehaviour
             if (grounded)
             {
                 grounded = false;
-                sfx.clip = clip.landing;
-                sfx.Play();
             }
         }
     }

@@ -48,8 +48,6 @@ public class PlayerController : MonoBehaviour
     [Header("Other")]
     [SerializeField] const int WHILELOOPKILL = 360; // Terminate a while loop after it runs this many times
     private int whileLoopTracker = 0; // Tracks the number of times a while loop has run
-    private AudioSource sfx;
-    private SFXClipManager clip;
     private Animator animator;
 
     private Rigidbody2D playerRB; // The player's rigidbody (Assigned at Start())
@@ -63,8 +61,6 @@ public class PlayerController : MonoBehaviour
         playerRB = gameObject.GetComponent<Rigidbody2D>();
         groundCeilingCheck = gameObject.GetComponent<GroundCeilingCheck>();
         chargeBar = GameObject.Find("ChargeBar").GetComponent<Slider>();
-        sfx = GetComponent<AudioSource>();
-        clip = GameObject.Find("SFXClipManager").GetComponent<SFXClipManager>();
         animator = GetComponent<Animator>();
     }
 
@@ -120,9 +116,6 @@ public class PlayerController : MonoBehaviour
                 hasSetStartAngle = false;
                 // Begin the jump
                 StartCoroutine("ReleaseSpring");
-                // Play the Jump SFX
-                sfx.clip = clip.jump;
-                sfx.Play();
             }
 
             // ...and the player is not grounded...
@@ -164,6 +157,9 @@ public class PlayerController : MonoBehaviour
     // FixedUpdate is called at a fixed rate, whenever unity makes physics calculations. This may be more or less often than Update.
     private void FixedUpdate()
     {
+        // Set the variables in the animator to their corresponding values
+        animator.SetBool("grounded", groundCeilingCheck.grounded);
+
         // If the player is grounded and they are not in the middle of a jump...
         if (groundCeilingCheck.grounded && releaseTime <= 0)
         {
@@ -179,14 +175,7 @@ public class PlayerController : MonoBehaviour
                 // Note the player's rotation as they land, this will be the angle the raycasts begin at
                 startRaycastAngleFrom = playerRB.rotation;
                 hasSetStartAngle = true;
-
-                // Indicate the player landed this update, starting the landing animation
-                animator.SetTrigger("landing");
-                
-                Debug.Log("Just Landed supposedly");
             }
-
-            else { animator.ResetTrigger("landing"); }
         }
 
         // Otherwise, the player is jumping, allow physics to be applied normally
@@ -319,7 +308,7 @@ public class PlayerController : MonoBehaviour
                         detectedImpassable = true; // Shows the raycast was successful
                         // Debug.Log("Right Clamp Confirmed angle at: " + (raycastAngleDegrees - confirmCastAngle));
                     }
-                    else { Debug.Log("Right Clamp failed to confirm angle at: " + (raycastAngleDegrees - confirmCastAngle)); }
+                    // else { Debug.Log("Right Clamp failed to confirm angle at: " + (raycastAngleDegrees - confirmCastAngle)); }
                 }
 
                 // If we are not checking and assigning to the right, assign the raycast's angle to the left clamp
@@ -347,7 +336,7 @@ public class PlayerController : MonoBehaviour
                         detectedImpassable = true; // Shows the raycast was successful
                         //Debug.Log("Left Clamp Confirmed angle at: " + (raycastAngleDegrees + confirmCastAngle));
                     }
-                    else { Debug.Log("Left Clamp failed to confirm angle at: " + (raycastAngleDegrees - confirmCastAngle)); }
+                    // else { Debug.Log("Left Clamp failed to confirm angle at: " + (raycastAngleDegrees - confirmCastAngle)); }
 
                 }
 

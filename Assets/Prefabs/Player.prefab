@@ -825,6 +825,7 @@ GameObject:
   - component: {fileID: 735940188342115155}
   - component: {fileID: 5137618133803956085}
   - component: {fileID: 5995010960261666770}
+  - component: {fileID: 4897641275444742961}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -1007,6 +1008,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseHP: 3
+  healthbar: {fileID: 0}
   hp: 3
   checkpointPos: {x: -7.41, y: 0}
 --- !u!114 &1373403858
@@ -1159,3 +1161,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slimeCountText: {fileID: 0}
+--- !u!114 &4897641275444742961
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8980386125322786974}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c4225758f5437a43873f6b572a57b9c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

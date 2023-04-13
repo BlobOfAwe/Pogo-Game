@@ -18,7 +18,7 @@ public class DamagePlayer : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D col)
     {
         // If the collider is the player
-        if (col.gameObject.tag == "Player")
+        if (col.gameObject.tag == "Player" && !col.gameObject.GetComponent<GroundSlam>().isSlamming)
         {
             // Assign a temporary variable
             GameObject player = col.gameObject;

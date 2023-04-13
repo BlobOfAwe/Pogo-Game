@@ -47,7 +47,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isStunned: 0
-  BiteDuration: 3
 --- !u!61 &6853363427784098897
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -351,7 +350,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.045791864, y: -0.21934433}
+  m_Offset: {x: -0.045791864, y: -0.72900105}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -362,7 +361,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.4778614, y: 0.1688005}
+  m_Size: {x: 1.4778614, y: 1.247736}
   m_EdgeRadius: 0
 --- !u!82 &3707296133784569779
 AudioSource:

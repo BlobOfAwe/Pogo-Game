@@ -7,8 +7,8 @@ public class TrapperStunScript : MonoBehaviour
 
     public bool isStunned = false;
     GroundSlam groundSlam;
-    private float biteTimer = 0f;
-    public float BiteDuration = 3f;
+    // private float biteTimer = 0f;
+    // public float BiteDuration = 3f;
     private AudioSource sfx;
     private SFXClipManager clip;
     private BoxCollider2D bc;
@@ -23,7 +23,7 @@ public class TrapperStunScript : MonoBehaviour
         bc = GetComponent<BoxCollider2D>();
         dmgPlayer = transform.parent.GetComponentInChildren<DamagePlayer>();
     }
-    private void OnTriggerEnter2D(Collider2D other)
+    private void OnCollisionEnter2D(Collision2D other)
     {
         if (other.gameObject.tag == "Player")
         {
@@ -33,6 +33,7 @@ public class TrapperStunScript : MonoBehaviour
             }
         }
     }
+
     //Stun function checks to see if the enemy is not stunned, then stuns it
     public void Stun()
     {
