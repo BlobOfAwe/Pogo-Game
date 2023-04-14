@@ -586,6 +586,7 @@ GameObject:
   - component: {fileID: 5079388897899048038}
   - component: {fileID: 5079388897899048039}
   - component: {fileID: 5079388897899048047}
+  - component: {fileID: 5655447472277545818}
   m_Layer: 6
   m_Name: Snalien
   m_TagString: Enemy
@@ -652,12 +653,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 1290422771, guid: bb1b9a46a6a1ff246a435d1bf71ea099, type: 3}
+  m_Sprite: {fileID: 1269779845, guid: a398442be56f45b449a6b467f9b32e79, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 2.2166667, y: 1.5254014}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -716,3 +717,23 @@ MonoBehaviour:
   stunnedBox: {fileID: 31587737891912548}
   timeStunned: 0
   stunCooldown: 20
+--- !u!95 &5655447472277545818
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5079388897899048037}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 610f381c358d65a4b89f397a41f7e086, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
