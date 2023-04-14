@@ -10800,12 +10800,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3169318727649824163, guid: 00a2153d72776314a970557e40487b10, type: 3}
       propertyPath: stickerID
-      value: 2
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 3169318727649824189, guid: 00a2153d72776314a970557e40487b10, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 9bd18488f23a7014cb01d32753976243, type: 3}
+      objectReference: {fileID: 21300000, guid: 0006276398045c84a84f44cc1a820c82, type: 3}
+    - target: {fileID: 3169318727649824189, guid: 00a2153d72776314a970557e40487b10, type: 3}
+      propertyPath: m_SortingOrder
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 3169318727649824190, guid: 00a2153d72776314a970557e40487b10, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -67450,10 +67454,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Sticker Pickup (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 3169318727649824163, guid: 00a2153d72776314a970557e40487b10, type: 3}
+      propertyPath: stickerID
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 3169318727649824189, guid: 00a2153d72776314a970557e40487b10, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 954c12f802c3017428ffa857eebbf0d5, type: 3}
+      objectReference: {fileID: 21300000, guid: e754cd982ff849d4cbf0d29497cb63b1, type: 3}
     - target: {fileID: 3169318727649824190, guid: 00a2153d72776314a970557e40487b10, type: 3}
       propertyPath: m_RootOrder
       value: 5
@@ -79262,12 +79270,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3169318727649824163, guid: 00a2153d72776314a970557e40487b10, type: 3}
       propertyPath: stickerID
-      value: 1
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 3169318727649824189, guid: 00a2153d72776314a970557e40487b10, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: ff4a0d927c427174d8aef934d9579e3e, type: 3}
+      objectReference: {fileID: 21300000, guid: 5172f8e83bc2b964e9ac6ca0483c9709, type: 3}
+    - target: {fileID: 3169318727649824189, guid: 00a2153d72776314a970557e40487b10, type: 3}
+      propertyPath: m_SortingOrder
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 3169318727649824190, guid: 00a2153d72776314a970557e40487b10, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -97800,12 +97812,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3169318727649824163, guid: 00a2153d72776314a970557e40487b10, type: 3}
       propertyPath: stickerID
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 3169318727649824189, guid: 00a2153d72776314a970557e40487b10, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 7190abaf4f210044da7a7fc720729e20, type: 3}
+      objectReference: {fileID: 21300000, guid: aafea5f03c1fddd4c8e0b3d0eed27d35, type: 3}
     - target: {fileID: 3169318727649824190, guid: 00a2153d72776314a970557e40487b10, type: 3}
       propertyPath: m_RootOrder
       value: 6
