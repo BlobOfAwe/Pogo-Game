@@ -160,6 +160,8 @@ public class PlayerController : MonoBehaviour
         // Set the variables in the animator to their corresponding values
         animator.SetBool("grounded", groundCeilingCheck.grounded);
 
+        playerRB.angularVelocity = 0;
+
         // If the player is grounded and they are not in the middle of a jump...
         if (groundCeilingCheck.grounded && releaseTime <= 0)
         {
