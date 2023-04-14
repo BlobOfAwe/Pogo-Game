@@ -17326,12 +17326,16 @@ PrefabInstance:
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2730947648695837775, guid: 9e3dfd36e07cdb64f8c0dbd79a4ee0dd, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 643.3098
+      objectReference: {fileID: 0}
+    - target: {fileID: 2730947648695837775, guid: 9e3dfd36e07cdb64f8c0dbd79a4ee0dd, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -55.341034
+      value: 57.2
       objectReference: {fileID: 0}
     - target: {fileID: 2730947648695837775, guid: 9e3dfd36e07cdb64f8c0dbd79a4ee0dd, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 26.200005
+      value: -61.3
       objectReference: {fileID: 0}
     - target: {fileID: 2730947648695837775, guid: 9e3dfd36e07cdb64f8c0dbd79a4ee0dd, type: 3}
       propertyPath: m_LocalPosition.z
@@ -20300,6 +20304,14 @@ PrefabInstance:
     - target: {fileID: 1242058863, guid: 7a1d5b163529a2a46a6c20e86f02af19, type: 3}
       propertyPath: m_Enabled
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1242058865, guid: 7a1d5b163529a2a46a6c20e86f02af19, type: 3}
+      propertyPath: checkpointPos.x
+      value: 82
+      objectReference: {fileID: 0}
+    - target: {fileID: 1242058865, guid: 7a1d5b163529a2a46a6c20e86f02af19, type: 3}
+      propertyPath: checkpointPos.y
+      value: 59
       objectReference: {fileID: 0}
     - target: {fileID: 5995010960261666770, guid: 7a1d5b163529a2a46a6c20e86f02af19, type: 3}
       propertyPath: slimeCountText
@@ -26074,7 +26086,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6437930655932412624, guid: a0b961bb0296fd249aded7e23f74c6bd, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 6.25
       objectReference: {fileID: 0}
     - target: {fileID: 6437930655932412624, guid: a0b961bb0296fd249aded7e23f74c6bd, type: 3}
       propertyPath: m_LocalPosition.y
@@ -26118,11 +26130,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6437930655932412630, guid: a0b961bb0296fd249aded7e23f74c6bd, type: 3}
       propertyPath: maxX
-      value: 316
+      value: 52
       objectReference: {fileID: 0}
     - target: {fileID: 6437930655932412630, guid: a0b961bb0296fd249aded7e23f74c6bd, type: 3}
       propertyPath: minX
-      value: 305.79
+      value: 46
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a0b961bb0296fd249aded7e23f74c6bd, type: 3}
