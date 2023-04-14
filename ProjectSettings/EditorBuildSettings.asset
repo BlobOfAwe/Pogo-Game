@@ -23,4 +23,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Level4Blockout.unity
     guid: c53d46273e4c2a1479f1aa0d8f5b09f7
+  - enabled: 1
+    path: Assets/Scenes/EndScreen.unity
+    guid: 4fb69f01d2134944e81bf929a601b74a
   m_configObjects: {}
