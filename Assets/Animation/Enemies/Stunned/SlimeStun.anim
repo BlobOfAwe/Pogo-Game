@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: SlimeStunnedAnim
+  m_Name: SlimeStun
   serializedVersion: 6
   m_Legacy: 0
   m_Compressed: 0
@@ -20,11 +20,11 @@ AnimationClip:
   m_PPtrCurves:
   - curve:
     - time: 0
-      value: {fileID: -494487734, guid: 7d602dc4f774164438cac4fda863934a, type: 3}
+      value: {fileID: 1037241792, guid: 693154fc803c7814493e9d7198a2cca7, type: 3}
     - time: 0.11111111
-      value: {fileID: 2053043817, guid: 7d602dc4f774164438cac4fda863934a, type: 3}
+      value: {fileID: 1092401389, guid: 693154fc803c7814493e9d7198a2cca7, type: 3}
     - time: 0.22222222
-      value: {fileID: 660404551, guid: 7d602dc4f774164438cac4fda863934a, type: 3}
+      value: {fileID: 1288635320, guid: 693154fc803c7814493e9d7198a2cca7, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -44,9 +44,9 @@ AnimationClip:
       customType: 23
       isPPtrCurve: 1
     pptrCurveMapping:
-    - {fileID: -494487734, guid: 7d602dc4f774164438cac4fda863934a, type: 3}
-    - {fileID: 2053043817, guid: 7d602dc4f774164438cac4fda863934a, type: 3}
-    - {fileID: 660404551, guid: 7d602dc4f774164438cac4fda863934a, type: 3}
+    - {fileID: 1037241792, guid: 693154fc803c7814493e9d7198a2cca7, type: 3}
+    - {fileID: 1092401389, guid: 693154fc803c7814493e9d7198a2cca7, type: 3}
+    - {fileID: 1288635320, guid: 693154fc803c7814493e9d7198a2cca7, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
