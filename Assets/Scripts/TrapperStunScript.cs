@@ -21,17 +21,7 @@ public class TrapperStunScript : MonoBehaviour
         groundSlam = FindObjectOfType<GroundSlam>();
         enemyAnimator = GetComponentInParent<Animator>();
         bc = GetComponent<BoxCollider2D>();
-        dmgPlayer = transform.parent.GetComponentInChildren<DamagePlayer>();
-    }
-    private void OnCollisionEnter2D(Collision2D other)
-    {
-        if (other.gameObject.tag == "Player")
-        {
-            if (groundSlam.isSlamming)
-            {
-                Stun();
-            }
-        }
+        dmgPlayer = GetComponent<DamagePlayer>();
     }
 
     //Stun function checks to see if the enemy is not stunned, then stuns it
@@ -43,7 +33,6 @@ public class TrapperStunScript : MonoBehaviour
             //Stuns the enemy if it is indeed stunned
             isStunned = true;
             dmgPlayer.enabled = false;
-            Debug.Log("Trapper is now stunned");
             sfx.clip = clip.enemyStun;
             sfx.Play();
         }
@@ -58,16 +47,4 @@ public class TrapperStunScript : MonoBehaviour
         // }
 
     }
-
-    public void UnStun()
-    {
-        // Checks if the enemy is stunned  
-        if (isStunned)
-        {
-            // Un-stuns the enemy if it is stunned
-            isStunned = false;
-
-        }
-    }
-
 }

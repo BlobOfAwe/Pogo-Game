@@ -4,37 +4,38 @@ using UnityEngine;
 
 public class TrapperController : MonoBehaviour
 {
+    [SerializeField] float detectRad;
     private BoxCollider2D bc;
     private TrapperStunScript trapperStun;
+    private DamagePlayer dmgPlayer;
     private Animator trapperAnimator;
+
     // Start is called before the first frame update
     void Start()
     {
         trapperAnimator = GetComponentInParent<Animator>();
         bc = GetComponent<BoxCollider2D>();
-        trapperStun = FindObjectOfType<TrapperStunScript>();
-    }
-    private void OnCollisionEnter2D(Collision2D other)
-    {
-        //Checks if the tag is assigned as Player
-        if (other.gameObject.tag == "Player" && !other.gameObject.GetComponent<GroundSlam>().isSlamming)
-        {
-            Debug.Log("hi");
-            //Initiates the stun function
-           trapperAnimator.SetTrigger("IsBiting");
-        }
-    }
-    // Update is called once per frame
-    void Update()
-    {
-        if (trapperStun.isStunned)
-        {
-            bc.enabled = false;
-        }
-        else
-        {
-            bc.enabled = true;
-        }
+        trapperStun = GetComponent<TrapperStunScript>();
+        dmgPlayer = GetComponent<DamagePlayer>();
     }
 
+    private void OnTriggerEnter2D(Collider2D col)
+    {
+        if (col.CompareTag("Player"))
+        {
+            Debug.Log(col.tag);
+            if (col.GetComponent<GroundSlam>().isSlamming || trapperStun.isStunned)
+            {
+                trapperStun.Stun();
+            }
+
+            else
+            {
+                trapperAnimator.SetTrigger("IsBiting");
+                Debug.Log(trapperAnimator.GetBool("IsBiting"));
+                dmgPlayer.Hurt(col.gameObject);
+            }
+
+        }
+    }
 }

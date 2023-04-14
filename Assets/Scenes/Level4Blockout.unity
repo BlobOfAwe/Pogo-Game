@@ -13839,6 +13839,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: DeathBox (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 2730947648695837771, guid: 9e3dfd36e07cdb64f8c0dbd79a4ee0dd, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 2730947648695837772, guid: 9e3dfd36e07cdb64f8c0dbd79a4ee0dd, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -17733,6 +17737,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: DeathBox (8)
       objectReference: {fileID: 0}
+    - target: {fileID: 2730947648695837771, guid: 9e3dfd36e07cdb64f8c0dbd79a4ee0dd, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 2730947648695837772, guid: 9e3dfd36e07cdb64f8c0dbd79a4ee0dd, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -20623,6 +20631,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: DeathBox (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 2730947648695837771, guid: 9e3dfd36e07cdb64f8c0dbd79a4ee0dd, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 2730947648695837772, guid: 9e3dfd36e07cdb64f8c0dbd79a4ee0dd, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -22094,6 +22106,10 @@ PrefabInstance:
     - target: {fileID: 6853363428939832047, guid: 5a053a80496062d4cb45392aff29f13c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6853363429000481349, guid: 5a053a80496062d4cb45392aff29f13c, type: 3}
+      propertyPath: detectRad
+      value: 0.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5a053a80496062d4cb45392aff29f13c, type: 3}
@@ -55268,6 +55284,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: DeathBox (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 2730947648695837771, guid: 9e3dfd36e07cdb64f8c0dbd79a4ee0dd, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 2730947648695837772, guid: 9e3dfd36e07cdb64f8c0dbd79a4ee0dd, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -57523,6 +57543,10 @@ PrefabInstance:
     - target: {fileID: 2730947648695837771, guid: 9e3dfd36e07cdb64f8c0dbd79a4ee0dd, type: 3}
       propertyPath: m_Name
       value: DeathBox (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2730947648695837771, guid: 9e3dfd36e07cdb64f8c0dbd79a4ee0dd, type: 3}
+      propertyPath: m_Layer
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2730947648695837772, guid: 9e3dfd36e07cdb64f8c0dbd79a4ee0dd, type: 3}
       propertyPath: m_Enabled
@@ -69761,6 +69785,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: DeathBox (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 2730947648695837771, guid: 9e3dfd36e07cdb64f8c0dbd79a4ee0dd, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 2730947648695837772, guid: 9e3dfd36e07cdb64f8c0dbd79a4ee0dd, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -77206,6 +77234,10 @@ PrefabInstance:
     - target: {fileID: 2730947648695837771, guid: 9e3dfd36e07cdb64f8c0dbd79a4ee0dd, type: 3}
       propertyPath: m_Name
       value: DeathBox (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2730947648695837771, guid: 9e3dfd36e07cdb64f8c0dbd79a4ee0dd, type: 3}
+      propertyPath: m_Layer
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2730947648695837772, guid: 9e3dfd36e07cdb64f8c0dbd79a4ee0dd, type: 3}
       propertyPath: m_Enabled
@@ -93790,6 +93822,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: DeathBox (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 2730947648695837771, guid: 9e3dfd36e07cdb64f8c0dbd79a4ee0dd, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 2730947648695837772, guid: 9e3dfd36e07cdb64f8c0dbd79a4ee0dd, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -97254,6 +97290,10 @@ PrefabInstance:
     - target: {fileID: 2730947648695837771, guid: 9e3dfd36e07cdb64f8c0dbd79a4ee0dd, type: 3}
       propertyPath: m_Name
       value: DeathBox
+      objectReference: {fileID: 0}
+    - target: {fileID: 2730947648695837771, guid: 9e3dfd36e07cdb64f8c0dbd79a4ee0dd, type: 3}
+      propertyPath: m_Layer
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2730947648695837772, guid: 9e3dfd36e07cdb64f8c0dbd79a4ee0dd, type: 3}
       propertyPath: m_Enabled
