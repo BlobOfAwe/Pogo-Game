@@ -40,6 +40,21 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Background
+    uniqueID: 4140881329
+    locked: 0
+  - name: Decorations
+    uniqueID: 1045870649
+    locked: 0
+  - name: dirt
+    uniqueID: 827281879
+    locked: 0
+  - name: Platforms
+    uniqueID: 647145717
+    locked: 0
+  - name: Enemies
+    uniqueID: 2914385197
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
