@@ -59,6 +59,10 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: fdac97556cff8a8448adfc8e2be349bd, type: 2}
+    - target: {fileID: 3871150639877049486, guid: a0b961bb0296fd249aded7e23f74c6bd, type: 3}
+      propertyPath: m_Intensity
+      value: 0.17
+      objectReference: {fileID: 0}
     - target: {fileID: 5137532444723769621, guid: a0b961bb0296fd249aded7e23f74c6bd, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.6974297
@@ -174,6 +178,14 @@ PrefabInstance:
     - target: {fileID: 6437930655932412631, guid: a0b961bb0296fd249aded7e23f74c6bd, type: 3}
       propertyPath: m_GravityScale
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7617906925156314121, guid: a0b961bb0296fd249aded7e23f74c6bd, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 7617906925156314121, guid: a0b961bb0296fd249aded7e23f74c6bd, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.12
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 0}
