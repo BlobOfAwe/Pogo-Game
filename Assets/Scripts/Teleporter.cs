@@ -7,6 +7,7 @@ public class Teleporter : MonoBehaviour
 {
     [SerializeField] int nextSceneIndex;
     private AudioSource sfx;
+    public Animator transitionAnim;
 
     private void Start()
     {
@@ -14,8 +15,15 @@ public class Teleporter : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        StartCoroutine(LoadLevel());
+    }
+   IEnumerator LoadLevel()
+    {
         Debug.Log("Entered Teleporter");
-        SceneManager.LoadScene(nextSceneIndex);
         sfx.Play();
+        transitionAnim.SetTrigger("FadeStart");
+        yield return new WaitForSeconds(1f);
+        SceneManager.LoadScene(nextSceneIndex);
+        transitionAnim.SetTrigger("FadeEnd");
     }
 }
